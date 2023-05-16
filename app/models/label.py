@@ -23,5 +23,5 @@ class Label(db.Model):
             "title": self.title,
             "userId": self.user_id,
             "taskId": self.task_id,
-            "createdAt": self.created_at
+            "createdAt": str(self.created_at)
         }
