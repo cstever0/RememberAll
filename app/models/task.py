@@ -18,7 +18,7 @@ class Task(db.Model):
 
     user = db.relationship("User", back_populates="user_tasks")
     project = db.relationship("Project", back_populates="project_tasks")
-    labels = db.relationship("Label", back_populates="task")
+    task_labels = db.relationship("Label", back_populates="task")
     task_comments = db.relationship("Comment", back_populates="task", cascade="all, delete-orphan")
 
     def to_dict(self):
