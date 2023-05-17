@@ -1,4 +1,4 @@
-import { arrayToObj } from "./arrayToObj";
+import { arrayToObj } from "../utilities/arrayToObj";
 
 const ALL_TASKS = "api/tasks";
 

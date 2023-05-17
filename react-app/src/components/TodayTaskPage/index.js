@@ -1,12 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllTasks } from "../../store/task";
-// import "./TodayTaskPage.css"
+import TaskCard from "../TaskCard";
+import monthObj from "../../utilities/monthObj";
+import "./TodayTaskPage.css"
 
 const TodayTaskPage = () => {
     const dispatch = useDispatch();
     const tasks = useSelector((state) => state.tasks.allTasks);
     const allTasks = Object.values(tasks);
+    const todayFullDate = new Date();
+    const month = todayFullDate.getMonth();
+    const day = todayFullDate.getDate();
 
     useEffect(() => {
         dispatch(getAllTasks());
@@ -16,7 +21,11 @@ const TodayTaskPage = () => {
 
     return (
         <div className="today-tasks-page-container">
-            {allTasks.map((task) => <div>{task.title}</div>)}
+            <div className="today-date-container">
+                <h2>Today</h2>
+                <p>{monthObj[month]}, {day}</p>
+            </div>
+            {allTasks.map((task) => <TaskCard key={task.id} task={task}/>)}
         </div>
     );
 };
