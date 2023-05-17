@@ -93,4 +93,10 @@ def get_one_task(id):
             return { "errors": "Unauthorized user" }, 401
 
     if request.method == "DELETE":
-        pass
+        if task.user_id == current_user.id:
+            db.session.delete(task)
+            db.session.commit()
+            return { "message": "Successfully Deleted" }
+
+        else:
+            return { "errors": "Unauthorized user" }, 401
