@@ -22,12 +22,12 @@ def seed():
         # Make sure to add all your other model's undo functions below
         undo_labels()
         undo_comments()
+        undo_tasks()
         undo_projects()
-        undo_tasks
         undo_users()
     seed_users()
-    seed_tasks()
     seed_projects()
+    seed_tasks()
     seed_comments()
     seed_labels()
     # Add other seed functions here
@@ -38,7 +38,7 @@ def seed():
 def undo():
     undo_labels()
     undo_comments()
+    undo_tasks()
     undo_projects()
-    undo_tasks
     undo_users()
     # Add other undo functions here
