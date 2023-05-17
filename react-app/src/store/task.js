@@ -10,12 +10,12 @@ const loadAllTasks = (tasks) => {
 };
 
 export const getAllTasks = () => async (dispatch) => {
-    const response = await fetch(`/api/tasks`);
+    const response = await fetch(`/api/tasks/`);
 
     if (response.ok) {
         const tasks = await response.json();
-        console.log("this is the fetch's response", tasks);
-        const tasksObj = arrayToObj(tasks)
+        // console.log("this is the fetch's response", tasks.tasks);
+        const tasksObj = arrayToObj(tasks.tasks)
         dispatch(loadAllTasks(tasksObj))
         return response;
     };
@@ -30,7 +30,8 @@ const tasksReducer = (state = initialState, action) => {
     switch(action.type) {
         case ALL_TASKS: {
             const newState = { ...state };
-            newState.allTasks = action.tasks;
+            newState.allTasks = { ...action.tasks };
+            return newState;
         }
         default:
             return state;
