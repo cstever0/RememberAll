@@ -41,13 +41,13 @@ function ProfileButton({ user }) {
   // const closeMenu = () => setShowMenu(false);
 
   return (
-    <>
+    <div className="profile-button-container">
       <button onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
-      <div className={ulClassName} ref={ulRef}>
+      <div className="profile-dropdown-container">
         {user && (
-          <>
+          <div className={ulClassName} ref={ulRef}>
             <p>Hello, {user.username}</p>
             <p>{user.email}</p>
             <div>
@@ -58,27 +58,11 @@ function ProfileButton({ user }) {
                 Log Out
               </button>
             </div>
-          </>
-        )
-        // : (
-        //   <>
-        //     <OpenModalButton
-        //       buttonText="Log In"
-        //       onItemClick={closeMenu}
-        //       modalComponent={<LoginFormModal />}
-        //     />
-
-        //     <OpenModalButton
-        //       buttonText="Sign Up"
-        //       onItemClick={closeMenu}
-        //       modalComponent={<SignupFormModal />}
-        //     />
-        //   </>
-        // )
-        }
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
-}
+};
 
 export default ProfileButton;
