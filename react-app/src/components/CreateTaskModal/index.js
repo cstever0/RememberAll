@@ -47,7 +47,7 @@ function CreateTaskModal() {
 				className="create-task-modal-form"
             >
                 <div className="modal-error-container">
-                    {Object.values(errors).length &&
+                    {Object.values(errors).length > 0 &&
                         Object.values(errors).map((error) => {
                             return <p>{error}</p>
                         })
@@ -69,7 +69,7 @@ function CreateTaskModal() {
                 </div>
                 <div className="create-task-modal-date">
                     <input
-                        type="datetime-local"
+                        type="date"
                         value={dueDate}
                         onChange={(e) => setDueDate(e.target.value)}
                     />
