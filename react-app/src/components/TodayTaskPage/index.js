@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllTasks } from "../../store/task";
+import SidebarNav from "../SidebarNav";
 import TaskCard from "../TaskCard";
 import monthObj from "../../utilities/monthObj";
 import "./TodayTaskPage.css"
@@ -21,13 +22,18 @@ const TodayTaskPage = () => {
     if (!allTasks.length) return null;
 
     return (
-        <div className="today-tasks-page-container">
-            <div className="today-date-container">
-                <h2>Today</h2>
-                <p>{monthObj[month]}, {day}</p>
+        <>
+            <SidebarNav />
+            <div className="today-tasks-page-container">
+                <div className="today-tasks-list-container">
+                    <div className="today-date-container">
+                        <h2>Today</h2>
+                        <p>{monthObj[month]}, {day}</p>
+                    </div>
+                    {allTasks.map((task) => <TaskCard key={task.id} task={task}/>)}
+                </div>
             </div>
-            {allTasks.map((task) => <TaskCard key={task.id} task={task}/>)}
-        </div>
+        </>
     );
 };
 

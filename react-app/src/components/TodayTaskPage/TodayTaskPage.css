@@ -1,3 +1,16 @@
+.today-tasks-page-container {
+    display: flex;
+    justify-content: center;
+}
+
+.today-tasks-list-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    align-self: center;
+}
+
 .today-date-container {
     display: flex;
     justify-content: center;
