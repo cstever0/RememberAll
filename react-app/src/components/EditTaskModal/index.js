@@ -2,18 +2,19 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { createOneTask } from "../../store/task";
-import "./CreateTaskModal.css";
+import { updateOneTask } from "../../store/task";
+import "./EditTaskModal.css";
 
-function CreateTaskModal() {
+function EditTaskModal({task}) {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [dueDate, setDueDate] = useState("");
+    const [title, setTitle] = useState(task.title);
+    const [description, setDescription] = useState(task.description);
+    const [dueDate, setDueDate] = useState(task.dueDate.slice(0,10));
     const [errors, setErrors] = useState({});
     const sessionUser = useSelector((state) => state.session.user);
     const { closeModal } = useModal();
+    console.log("this is dueDate", dueDate)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,18 +23,15 @@ function CreateTaskModal() {
         if (!title) errorObj.title = "Please enter a valid name";
         if (!dueDate) errorObj.dueDate = "Please enter a valid due date";
 
-        const item = {
-            "title": title,
-            "description": description,
-            "user_id": sessionUser.id,
-            "due_date": dueDate
-        };
+        task.title = title
+        task.description = description
+        task.due_date = dueDate
 
-        const task = await dispatch(createOneTask(item));
-        // console.log("this is the task dispatch return", task)
-        if (task) {
+        const updatedTask = await dispatch(updateOneTask(task));
+        console.log("this is the task dispatch return", updatedTask)
+        if (updatedTask) {
             closeModal();
-            history.push(`/tasks/${task.id}`)
+            // history.push(`/tasks/${task.id}`)
         } else {
             setErrors(errorObj)
         }
@@ -86,7 +84,7 @@ function CreateTaskModal() {
                             className="button-type"
                             onClick={handleSubmit}
                         >
-                            Create task
+                            Save
                         </button>
                     </div>
                 </div>
@@ -95,4 +93,4 @@ function CreateTaskModal() {
     )
 };
 
-export default CreateTaskModal;
+export default EditTaskModal;

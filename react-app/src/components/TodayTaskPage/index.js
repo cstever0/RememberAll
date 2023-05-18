@@ -12,6 +12,7 @@ const TodayTaskPage = () => {
     const todayFullDate = new Date();
     const month = todayFullDate.getMonth();
     const day = todayFullDate.getDate();
+    // console.log("this is new Date", todayFullDate)
 
     useEffect(() => {
         dispatch(getAllTasks());

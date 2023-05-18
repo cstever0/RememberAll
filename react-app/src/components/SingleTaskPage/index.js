@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
 import { getOneTask } from "../../store/task";
 import OpenModalButton from "../OpenModalButton";
+import EditTaskModal from "../EditTaskModal";
 import "./SingleTaskPage.css";
+import DeleteTaskModal from "../DeleteTaskModal";
 
 const SingleTaskPage = () => {
     const dispatch = useDispatch();
@@ -25,7 +27,7 @@ const SingleTaskPage = () => {
         setIsHidden(!isHidden)
     };
 
-    const { comments } = task.comments;
+    // const { comments } = task.comments;
     // console.log("this is comments", comments);
     const editTaskDropdown = isHidden ? "hidden" : "edit-task-dropdown"
 
@@ -44,11 +46,11 @@ const SingleTaskPage = () => {
                         <div className={editTaskDropdown}>
                             <OpenModalButton
                                 buttonText="Edit task..."
-                                // modalComponent={}
+                                modalComponent={<EditTaskModal task={task} />}
                             />
                             <OpenModalButton
                                 buttonText="Delete task..."
-                                // modalComponent={}
+                                modalComponent={<DeleteTaskModal id={task.id} />}
                             />
                         </div>
                     </div>
@@ -63,9 +65,9 @@ const SingleTaskPage = () => {
                     />
                 </div>
                 <div className="single-task-comment-section">
-                    {comments.map((comment) => {
+                    {/* {comments.map((comment) => {
                         return <div>{comment.description}</div>
-                    })}
+                    })} */}
                 </div>
             </div>
         </div>

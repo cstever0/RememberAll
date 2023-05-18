@@ -3,6 +3,8 @@ import { arrayToObj } from "../utilities/arrayToObj";
 const ALL_TASKS = "api/tasks";
 const ONE_TASK = "api/tasks/oneTask";
 const CREATE_TASK = "api/tasks/new";
+const UPDATE_TASK = "api/tasks/edit";
+const DELETE_TASK = "api/tasks/delete";
 
 const loadAllTasks = (tasks) => {
     return {
@@ -22,6 +24,20 @@ const createNewTask = (task) => {
     return {
         type: CREATE_TASK,
         task
+    };
+};
+
+const updateOldTask = (task) => {
+    return {
+        type: UPDATE_TASK,
+        task
+    };
+};
+
+const deleteOldTask = (id) => {
+    return {
+        type: DELETE_TASK,
+        id
     };
 };
 
@@ -57,16 +73,44 @@ export const createOneTask = (task) => async (dispatch) => {
 
     if (response.ok) {
         const task = await response.json();
-        console.log("this is the task response", task)
+        // console.log("this is the task response", task)
         dispatch(createNewTask(task));
         return task;
     }
 };
 
+export const updateOneTask = (task) => async (dispatch) => {
+    const response = await fetch(`/api/tasks/${task.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(task)
+    });
+
+    if (response.ok) {
+        const task = await response.json();
+        // console.log("this is the task response", task)
+        dispatch(updateOldTask(task));
+        return task;
+    };
+};
+
+export const deleteOneTask = (id) => async (dispatch) => {
+    const response = await fetch(`/api/tasks/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+
+    if (response.ok) {
+        dispatch(deleteOldTask(id));
+    };
+};
+
 const initialState = {
     allTasks : {},
     oneTask: {}
-}
+};
 
 const tasksReducer = (state = initialState, action) => {
     switch(action.type) {
@@ -83,6 +127,18 @@ const tasksReducer = (state = initialState, action) => {
         case CREATE_TASK: {
             const newState = { ...state, allTasks: { ...state.allTasks } };
             newState.allTasks[action.task.id] = action.task;
+            return newState;
+        }
+        case UPDATE_TASK: {
+            const newState = { ...state, allTasks: { ...state.allTasks } };
+            // const newState = { ...state, allTasks: { ...state.allTasks }, oneTask: { ...state.oneTask } };
+            newState.allTasks[action.task.id] = action.task;
+            newState.oneTask = action.task;
+            return newState;
+        }
+        case DELETE_TASK: {
+            const newState = { ...state, allTasks: { ...state.allTasks } };
+            delete newState.allTasks[action.id];
             return newState;
         }
         default:
