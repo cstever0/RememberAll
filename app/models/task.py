@@ -30,5 +30,5 @@ class Task(db.Model):
             "projectId": self.project_id,
             "dueDate": str(self.due_date),
             "createdAt": str(self.created_at),
-            "labels": [label.to_dict() for label in self.labels]
+            # "labels": [label.to_dict() for label in self.labels]
         }
