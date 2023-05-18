@@ -19,21 +19,24 @@ const TodayTaskPage = () => {
         dispatch(getAllTasks());
     }, [dispatch]);
 
-    if (!allTasks.length) return null;
+    // if (!allTasks.length) return null;
 
     return (
-        <>
+        <div className="today-tasks-page-container">
             <SidebarNav />
-            <div className="today-tasks-page-container">
+            <div className="today-tasks-container">
                 <div className="today-tasks-list-container">
                     <div className="today-date-container">
                         <h2>Today</h2>
                         <p>{monthObj[month]}, {day}</p>
                     </div>
-                    {allTasks.map((task) => <TaskCard key={task.id} task={task}/>)}
+                    {
+                        allTasks.length > 0 &&
+                        allTasks.map((task) => <TaskCard key={task.id} task={task}/>)
+                    }
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

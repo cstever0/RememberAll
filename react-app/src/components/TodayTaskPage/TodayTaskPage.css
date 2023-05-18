@@ -1,6 +1,13 @@
 .today-tasks-page-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.today-tasks-container {
     display: flex;
     justify-content: center;
+    align-self: center;
+    align-content: center;
 }
 
 .today-tasks-list-container {

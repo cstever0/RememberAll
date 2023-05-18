@@ -1,6 +1,18 @@
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProjects } from "../../store/project";
+import { useEffect } from "react";
+import "./SidebarNav.css"
+import ProjectCard from "../ProjectCard";
 
 const SidebarNav = () => {
+    const dispatch = useDispatch();
+    const projects = useSelector((state) => state.projects.allProjects);
+    const allProjects = Object.values(projects);
+
+    useEffect(() => {
+        dispatch(getAllProjects());
+    }, [dispatch]);
 
     return (
         <div className="sidebar-nav-container">
@@ -15,6 +27,13 @@ const SidebarNav = () => {
                         Upcoming
                     </NavLink> */}
                 </div>
+            </div>
+            <div className="sidebar-nav-project-cards-container">
+                <h2>Projects</h2>
+                    {
+                        allProjects.length > 0 &&
+                        allProjects.map((project) => <ProjectCard key={project.id} project={project}/>)
+                    }
             </div>
         </div>
     );
