@@ -49,6 +49,7 @@ def get_current_tasks():
             return new_task.to_dict(), 201
 
         else:
+            # print(form.errors)
             return form.errors, 400
 
 
@@ -79,7 +80,7 @@ def get_one_task(id):
                 data = form.data
                 task.title = data["title"]
                 task.description = data["description"]
-                task.user_id = current_user
+                task.user_id = current_user.id
                 task.project_id = data["project_id"]
                 task.due_date = data["due_date"]
 

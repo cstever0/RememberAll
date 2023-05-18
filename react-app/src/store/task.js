@@ -1,7 +1,8 @@
 import { arrayToObj } from "../utilities/arrayToObj";
 
 const ALL_TASKS = "api/tasks";
-const ONE_TASK = "api/tasks/oneTask"
+const ONE_TASK = "api/tasks/oneTask";
+const CREATE_TASK = "api/tasks/new";
 
 const loadAllTasks = (tasks) => {
     return {
@@ -14,8 +15,15 @@ const loadOneTask = (task) => {
     return {
         type: ONE_TASK,
         task
-    }
-}
+    };
+};
+
+const createNewTask = (task) => {
+    return {
+        type: CREATE_TASK,
+        task
+    };
+};
 
 export const getAllTasks = () => async (dispatch) => {
     const response = await fetch(`/api/tasks/`);
@@ -40,6 +48,21 @@ export const getOneTask = (id) => async (dispatch) => {
     }
 };
 
+export const createOneTask = (task) => async (dispatch) => {
+    const response = await fetch("/api/tasks/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(task)
+    });
+
+    if (response.ok) {
+        const task = await response.json();
+        console.log("this is the task response", task)
+        dispatch(createNewTask(task));
+        return task;
+    }
+};
+
 const initialState = {
     allTasks : {},
     oneTask: {}
@@ -55,6 +78,11 @@ const tasksReducer = (state = initialState, action) => {
         case ONE_TASK: {
             const newState = { ...state };
             newState.oneTask = { ...action.task};
+            return newState;
+        }
+        case CREATE_TASK: {
+            const newState = { ...state, allTasks: { ...state.allTasks } };
+            newState.allTasks[action.task.id] = action.task;
             return newState;
         }
         default:

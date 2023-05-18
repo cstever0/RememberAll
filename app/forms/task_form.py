@@ -8,4 +8,4 @@ class TaskForm(FlaskForm):
     title = StringField("title", validators=[DataRequired()])
     description = StringField("description", validators=[Optional(strip_whitespace=True)])
     project_id = IntegerField("project_id", validators=[Optional(strip_whitespace=True)])
-    due_date = DateTimeLocalField("due_date")
+    due_date = DateTimeLocalField("due_date", format="%Y-%m-%dT%H:%M")

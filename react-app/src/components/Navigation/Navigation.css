@@ -7,6 +7,10 @@
   padding: 1%;
 }
 
+.navigation-right-container {
+  display: flex;
+}
+
 .profile-dropdown-container {
   position: relative;
   top: 3vh;
