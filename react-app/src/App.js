@@ -5,6 +5,7 @@ import SplashPage from "./components/SplashPage";
 import TodayTaskPage from "./components/TodayTaskPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import SingleTaskPage from "./components/SingleTaskPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,6 +18,10 @@ function App() {
     <>
       {isLoaded && (
         <Switch>
+          <Route path="/tasks/:taskId">
+            <Navigation isLoaded={isLoaded} />
+            <SingleTaskPage />
+          </Route>
           <Route path="/home">
             <Navigation isLoaded={isLoaded} />
             <TodayTaskPage />
