@@ -11,7 +11,7 @@ const SingleTaskPage = () => {
     const { taskId } = useParams();
     const task = useSelector((state) => state.tasks.oneTask);
     const sessionUser = useSelector((state) => state.session.user);
-    console.log("this is task", task);
+    // console.log("this is task", task);
 
     useEffect(() => {
         dispatch(getOneTask(taskId))
@@ -26,8 +26,7 @@ const SingleTaskPage = () => {
     };
 
     const { comments } = task.comments;
-    console.log("this is comments", comments);
-    console.log(comments[0].description)
+    // console.log("this is comments", comments);
     const editTaskDropdown = isHidden ? "hidden" : "edit-task-dropdown"
 
     return (
@@ -67,7 +66,6 @@ const SingleTaskPage = () => {
                     {comments.map((comment) => {
                         return <div>{comment.description}</div>
                     })}
-                    {/* {comments[0].description} */}
                 </div>
             </div>
         </div>
