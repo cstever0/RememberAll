@@ -2,3 +2,7 @@
 /* html {
     background-color: black;
 } */
+
+button {
+    cursor: pointer;
+}

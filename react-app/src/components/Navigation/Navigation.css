@@ -7,6 +7,14 @@
   padding: 1%;
 }
 
+.navigation-tooltip-container {
+  position: relative;
+}
+
+.navigation-tooltip {
+  position: absolute;
+}
+
 .navigation-right-container {
   display: flex;
 }
