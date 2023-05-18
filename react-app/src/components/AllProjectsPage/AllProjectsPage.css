@@ -1,0 +1,9 @@
+.all-projects-page-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.all-projects-header-container {
+    display: flex;
+    justify-content: space-between;
+}

@@ -29,11 +29,15 @@ const SidebarNav = () => {
                 </div>
             </div>
             <div className="sidebar-nav-project-cards-container">
-                <h2>Projects</h2>
+                <div className="side-nav-project-cards">
+                    <NavLink to="/projects">
+                        Projects
+                    </NavLink>
                     {
                         allProjects.length > 0 &&
                         allProjects.map((project) => <ProjectCard key={project.id} project={project}/>)
                     }
+                </div>
             </div>
         </div>
     );

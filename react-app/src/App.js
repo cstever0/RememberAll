@@ -6,6 +6,7 @@ import TodayTaskPage from "./components/TodayTaskPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import SingleTaskPage from "./components/SingleTaskPage";
+import AllProjectsPage from "./components/AllProjectsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,10 @@ function App() {
           <Route path="/tasks/:taskId">
             <Navigation isLoaded={isLoaded} />
             <SingleTaskPage />
+          </Route>
+          <Route path="/projects">
+            <Navigation isLoaded={isLoaded} />
+            <AllProjectsPage />
           </Route>
           <Route path="/home">
             <Navigation isLoaded={isLoaded} />
