@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import SingleTaskPage from "./components/SingleTaskPage";
 import AllProjectsPage from "./components/AllProjectsPage";
+import SingProjectPage from "./components/SingleProjectPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,10 @@ function App() {
           <Route path="/tasks/:taskId">
             <Navigation isLoaded={isLoaded} />
             <SingleTaskPage />
+          </Route>
+          <Route path="/projects/:projectId">
+            <Navigation isLoaded={isLoaded} />
+            <SingProjectPage />
           </Route>
           <Route path="/projects">
             <Navigation isLoaded={isLoaded} />

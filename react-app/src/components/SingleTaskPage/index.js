@@ -4,8 +4,8 @@ import { useParams, Redirect } from "react-router-dom";
 import { getOneTask } from "../../store/task";
 import OpenModalButton from "../OpenModalButton";
 import EditTaskModal from "../EditTaskModal";
-import "./SingleTaskPage.css";
 import DeleteTaskModal from "../DeleteTaskModal";
+import "./SingleTaskPage.css";
 
 const SingleTaskPage = () => {
     const dispatch = useDispatch();
