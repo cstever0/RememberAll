@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProjects } from "../../store/project";
 import SidebarNav from "../SidebarNav";
 import ProjectCard from "../ProjectCard";
+import OpenModalButton from '../OpenModalButton';
+import CreateProjectModal from "../CreateProjectModal";
 import "./AllProjectsPage.css";
 
 const AllProjectsPage = () => {
@@ -21,7 +23,10 @@ const AllProjectsPage = () => {
                 <div className="all-projects-list-container">
                     <div className="all-projects-header-container">
                         <h2>Projects</h2>
-                        <button>+ Add project</button>
+                        <OpenModalButton
+                            buttonText="+ Add project"
+                            modalComponent={<CreateProjectModal />}
+                        />
                     </div>
                     <div className="all-projects-list">
                         {

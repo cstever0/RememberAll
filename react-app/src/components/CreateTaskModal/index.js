@@ -32,10 +32,10 @@ function CreateTaskModal({ projectId }) {
 
 
             const task = await dispatch(createOneTask(item));
-            // console.log("this is the task dispatch return", task)
+            // console.log("this is the task dispatch return", task);
             if (task) {
                 closeModal();
-                history.push(`/tasks/${task.id}`)
+                history.push(`/tasks/${task.id}`);
             } else {
                 setErrors(errorObj)
             }
