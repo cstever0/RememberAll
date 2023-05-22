@@ -15,7 +15,7 @@ const SingProjectPage = () => {
     const project = useSelector((state) => state.projects.oneProject);
     const tasks = useSelector((state) => state.tasks.allTasks);
     const allTasks = Object.values(tasks)
-    const projectTasks = allTasks.filter(task => task.projectId == project.id)
+    const projectTasks = allTasks.filter(task => task.projectId === project.id)
     const sessionUser = useSelector((state) => state.session.user);
     console.log("allTasks output", allTasks)
 
