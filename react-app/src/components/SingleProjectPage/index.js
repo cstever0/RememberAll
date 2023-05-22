@@ -80,7 +80,6 @@ const SingProjectPage = () => {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 };

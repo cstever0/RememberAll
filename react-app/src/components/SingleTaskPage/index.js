@@ -5,6 +5,7 @@ import { getOneTask } from "../../store/task";
 import OpenModalButton from "../OpenModalButton";
 import EditTaskModal from "../EditTaskModal";
 import DeleteTaskModal from "../DeleteTaskModal";
+import SidebarNav from "../SidebarNav";
 import "./SingleTaskPage.css";
 
 const SingleTaskPage = () => {
@@ -33,42 +34,47 @@ const SingleTaskPage = () => {
 
     return (
         <div className="single-task-page-container">
-            <div className="single-task-page-header">
-                <div className="single-task-header-details">
-                    <h1>{task.title}</h1>
-                    <p>{task.description}</p>
-                </div>
-                <div className="single-task-edit-button">
-                    <button onClick={handleClick}>
-                        <i className="fas fa-ellipsis-h"></i>
-                    </button>
-                    <div className="edit-task-dropdown-container">
-                        <div className={editTaskDropdown}>
-                            <OpenModalButton
-                                buttonText="Edit task..."
-                                modalComponent={<EditTaskModal task={task} />}
-                            />
-                            <OpenModalButton
-                                buttonText="Delete task..."
-                                modalComponent={<DeleteTaskModal id={task.id} />}
-                            />
+            <SidebarNav />
+            <div>
+                <div className="single-task-page-header">
+                    <div className="single-task-header-details">
+                        <h1>{task.title}</h1>
+                        <p>{task.description}</p>
+                    </div>
+                    <div className="single-task-edit-button">
+                        <button onClick={handleClick}>
+                            <i className="fas fa-ellipsis-h"></i>
+                        </button>
+                        <div className="edit-task-dropdown-container">
+                            <div className={editTaskDropdown}>
+                                <OpenModalButton
+                                    buttonText="Edit task..."
+                                    modalComponent={<EditTaskModal task={task} />}
+                                />
+                                <OpenModalButton
+                                    buttonText="Delete task..."
+                                    modalComponent={<DeleteTaskModal id={task.id} />}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="single-task-page-comments-container">
-                <div className="single-task-comment-input">
-                    <input
-                    type="text"
-                    id="comment-input"
-                    placeholder="Comment"
-                    />
-                </div>
-                <div className="single-task-comment-section">
-                    {/* {comments.map((comment) => {
+                <div className="single-task-page-comments-container">
+                    <div className="single-task-comment-input">
+                        <input
+                            type="text"
+                            id="comment-input"
+                            placeholder="Comment"
+                        />
+                    </div>
+                    <div className="single-task-comment-section">
+                        {/* {comments.map((comment) => {
                         return <div>{comment.description}</div>
                     })} */}
+                        <p>Comments Section Coming Soon!</p>
+                    </div>
                 </div>
+
             </div>
         </div>
     );
