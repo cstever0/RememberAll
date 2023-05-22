@@ -60,7 +60,7 @@ export const getOneTask = (id) => async (dispatch) => {
         const task = await response.json();
         // console.log("this is the task response", task)
         dispatch(loadOneTask(task.task))
-        return response
+        return response;
     }
 };
 
@@ -103,7 +103,9 @@ export const deleteOneTask = (id) => async (dispatch) => {
     });
 
     if (response.ok) {
+        const task = await response.json();
         dispatch(deleteOldTask(id));
+        return task;
     };
 };
 
