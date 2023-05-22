@@ -6,6 +6,7 @@ import { getAllTasks } from "../../store/task";
 import OpenModalButton from "../OpenModalButton";
 import CreateTaskModal from "../CreateTaskModal";
 import EditProjectModal from "../EditProjectModal";
+import DeleteProjectModal from "../DeleteProjectModal";
 import TaskCard from "../TaskCard";
 import SidebarNav from "../SidebarNav";
 import "./SingleProjectPage.css"
@@ -55,11 +56,11 @@ const SingProjectPage = () => {
                             <div className={editProjectDropdown}>
                                 <OpenModalButton
                                     buttonText="Edit project"
-                                modalComponent={<EditProjectModal project={project}/>}
+                                    modalComponent={<EditProjectModal project={project} />}
                                 />
                                 <OpenModalButton
                                     buttonText="Delete project"
-                                // modalComponent={}
+                                    modalComponent={<DeleteProjectModal id={project.id} />}
                                 />
                             </div>
                         </div>

@@ -93,7 +93,7 @@ export const updateOneProject = (project) => async (dispatch) => {
 };
 
 export const deleteOneProject = (id) => async (dispatch) => {
-    const response = await fetch(`/api/tasks/${id}`, {
+    const response = await fetch(`/api/projects/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
