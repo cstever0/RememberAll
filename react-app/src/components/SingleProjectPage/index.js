@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { getOneProject } from "../../store/project";
+import { getAllTasks } from "../../store/task";
 import OpenModalButton from "../OpenModalButton";
 import CreateTaskModal from "../CreateTaskModal";
+import EditProjectModal from "../EditProjectModal";
 import TaskCard from "../TaskCard";
+import SidebarNav from "../SidebarNav";
 import "./SingleProjectPage.css"
-import { getAllTasks } from "../../store/task";
 
 const SingProjectPage = () => {
     const dispatch = useDispatch();
@@ -39,42 +41,46 @@ const SingProjectPage = () => {
 
     return (
         <div className="single-project-page-container">
-            <div className="single-project-page-header">
-                <div className="single-project-header-details">
-                    <h1>{project.title}</h1>
-                </div>
-                <div className="single-project-edit-button">
-                    <button onClick={handleClick}>
-                        <i className="fas fa-ellipsis-h"></i>
-                    </button>
-                    <div className="edit-project-dropdown-container">
-                        <div className={editProjectDropdown}>
-                            <OpenModalButton
-                                buttonText="Edit project"
+            <SidebarNav />
+            <div className="project-tasks-container">
+                <div className="single-project-page-header">
+                    <div className="single-project-header-details">
+                        <h1>{project.title}</h1>
+                    </div>
+                    <div className="single-project-edit-button">
+                        <button onClick={handleClick}>
+                            <i className="fas fa-ellipsis-h"></i>
+                        </button>
+                        <div className="edit-project-dropdown-container">
+                            <div className={editProjectDropdown}>
+                                <OpenModalButton
+                                    buttonText="Edit project"
+                                modalComponent={<EditProjectModal project={project}/>}
+                                />
+                                <OpenModalButton
+                                    buttonText="Delete project"
                                 // modalComponent={}
-                            />
-                            <OpenModalButton
-                                buttonText="Delete project"
-                                // modalComponent={}
-                            />
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="single-project-page-tasks-container">
-                <div className="single-project-tasks-section">
-                    {
-                        projectTasks.length > 0 &&
-                        projectTasks.map((task) => <TaskCard key={task.id} task={task} />)
-                    }
+                <div className="single-project-page-tasks-container">
+                    <div className="single-project-tasks-section">
+                        {
+                            projectTasks.length > 0 &&
+                            projectTasks.map((task) => <TaskCard key={task.id} task={task} />)
+                        }
+                    </div>
+                    <div className="single-project-add-task-button">
+                        <OpenModalButton
+                            buttonText="+ Add task"
+                            modalComponent={<CreateTaskModal projectId={project.id} />}
+                        />
+                    </div>
                 </div>
-                <div className="single-project-add-task-button">
-                    <OpenModalButton
-                        buttonText="+ Add task"
-                        modalComponent={<CreateTaskModal projectId={project.id}/>}
-                    />
-                </div>
             </div>
+
         </div>
     )
 };

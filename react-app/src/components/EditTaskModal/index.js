@@ -20,7 +20,7 @@ function EditTaskModal({task}) {
         e.preventDefault();
         const errorObj = {};
 
-        if (!title) errorObj.title = "Please enter a valid name";
+        if (!title) errorObj.title = "Please enter a name for this task";
         if (!dueDate) errorObj.dueDate = "Please enter a valid due date";
 
         task.title = title
@@ -28,12 +28,12 @@ function EditTaskModal({task}) {
         task.due_date = dueDate
 
         const updatedTask = await dispatch(updateOneTask(task));
-        console.log("this is the task dispatch return", updatedTask)
-        if (updatedTask) {
-            closeModal();
+        console.log("this is the task dispatch return", updatedTask);
+        if (Object.values(errorObj).length) {
+            setErrors(errorObj);
             // history.push(`/tasks/${task.id}`)
         } else {
-            setErrors(errorObj)
+            closeModal();
         }
     };
 

@@ -1,0 +1,47 @@
+.single-project-page-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.project-tasks-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-self: center; */
+    /* align-content: center; */
+    /* text-align: center; */
+}
+
+.single-project-page-header {
+    display: flex;
+    /* justify-content: space-between; */
+    /* text-align: center; */
+    align-items: center;
+    justify-content: center;
+}
+
+.single-project-header-details {
+    /* text-align: center; */
+    padding-right: 5px;
+}
+
+.single-project-edit-button {
+    position: relative;
+}
+
+.edit-project-dropdown-container {
+    position: absolute;
+}
+
+/* .single-project-page-tasks-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.single-project-tasks-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+} */

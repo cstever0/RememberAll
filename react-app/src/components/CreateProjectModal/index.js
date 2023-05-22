@@ -16,7 +16,7 @@ function CreateProjectModal() {
         e.preventDefault();
         const errorObj = {};
 
-        if (!title) errorObj.title = "Please enter a valid name";
+        if (!title) errorObj.title = "Please enter a name for this project";
 
         const item = {
             "title": title,
