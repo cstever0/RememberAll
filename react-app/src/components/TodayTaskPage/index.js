@@ -9,11 +9,13 @@ import "./TodayTaskPage.css"
 const TodayTaskPage = () => {
     const dispatch = useDispatch();
     const tasks = useSelector((state) => state.tasks.allTasks);
+    const projects = useSelector((state) => state.projects.allProjects);
     const allTasks = Object.values(tasks);
     const todayFullDate = new Date();
     const month = todayFullDate.getMonth();
     const day = todayFullDate.getDate();
     // console.log("this is new Date", todayFullDate)
+    // console.log("projects output", projects[17])
 
     useEffect(() => {
         dispatch(getAllTasks());
@@ -32,7 +34,7 @@ const TodayTaskPage = () => {
                     </div>
                     {
                         allTasks.length > 0 &&
-                        allTasks.map((task) => <TaskCard key={task.id} task={task}/>)
+                        allTasks.map((task) => <TaskCard key={task.id} task={task} project={projects[task.projectId]} />)
                     }
                 </div>
             </div>

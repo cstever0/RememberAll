@@ -70,7 +70,7 @@ const SingProjectPage = () => {
                     <div className="single-project-tasks-section">
                         {
                             projectTasks.length > 0 &&
-                            projectTasks.map((task) => <TaskCard key={task.id} task={task} />)
+                            projectTasks.map((task) => <TaskCard key={task.id} task={task} project={project} />)
                         }
                     </div>
                     <div className="single-project-add-task-button">
