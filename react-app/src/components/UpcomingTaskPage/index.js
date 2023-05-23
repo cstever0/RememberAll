@@ -6,18 +6,16 @@ import TaskCard from "../TaskCard";
 import monthObj from "../../utilities/monthObj";
 import "./TodayTaskPage.css"
 
-const TodayTaskPage = () => {
+const UpcomingTaskPage = () => {
     const dispatch = useDispatch();
     const tasks = useSelector((state) => state.tasks.allTasks);
     const projects = useSelector((state) => state.projects.allProjects);
+    const allTasks = Object.values(tasks);
     const todayFullDate = new Date();
-    const todayTasks = Object.values(tasks).filter(task => new Date(task.dueDate).getTime() <= todayFullDate.getTime());
-    const sortedTasks = todayTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
     const month = todayFullDate.getMonth();
     const day = todayFullDate.getDate();
     // console.log("this is new Date", todayFullDate)
     // console.log("projects output", projects[17])
-    console.log("allTasks filtered", sortedTasks)
 
     useEffect(() => {
         dispatch(getAllTasks());
@@ -31,12 +29,12 @@ const TodayTaskPage = () => {
             <div className="today-tasks-container">
                 <div className="today-tasks-list-container">
                     <div className="today-date-container">
-                        <h2>Today</h2>
+                        <h2>All Tasks</h2>
                         <p>{monthObj[month]}, {day}</p>
                     </div>
                     {
-                        sortedTasks.length > 0 &&
-                        sortedTasks.map((task) => <TaskCard key={task.id} task={task} project={projects[task.projectId]} />)
+                        allTasks.length > 0 &&
+                        allTasks.map((task) => <TaskCard key={task.id} task={task} project={projects[task.projectId]} />)
                     }
                 </div>
             </div>
@@ -44,4 +42,4 @@ const TodayTaskPage = () => {
     );
 };
 
-export default TodayTaskPage;
+export default UpcomingTaskPage;

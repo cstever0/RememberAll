@@ -3,9 +3,9 @@ import OpenModalButton from "../OpenModalButton";
 import "./TaskCard.css";
 
 export default function TaskCard({task, project}) {
-    console.log("task output", task);
-    console.log("project output", project);
     const displayDueDate = new Date(task.dueDate).toDateString();
+    // console.log("task output", task);
+    // console.log("project output", project);
 
     return (
         <div className="task-card-container">
