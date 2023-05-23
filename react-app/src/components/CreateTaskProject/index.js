@@ -8,6 +8,7 @@ import { createOneTask } from "../../store/task";
 function CreateTaskProject() {
     const dispatch = useDispatch();
     const history = useHistory();
+    const todayFullDate = new Date();
     const sessionUser = useSelector((state) => state.session.user);
     const projects = useSelector((state) => state.projects.allProjects);
     const allProjects = Object.values(projects);
@@ -27,6 +28,7 @@ function CreateTaskProject() {
 
         if (!title) errorObj.title = "Please enter a valid name";
         if (!dueDate) errorObj.dueDate = "Please enter a valid due date";
+        if (new Date(dueDate).getTime() < todayFullDate.getTime()) errorObj.dueDate = "Due dates must not be in the past";
 
         if (!projectId) {
             const item = {
