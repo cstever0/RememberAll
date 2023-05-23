@@ -1,7 +1,7 @@
 import { arrayToObj } from "../utilities/arrayToObj";
 
 const ALL_TASKS = "api/tasks";
-const ONE_TASK = "api/tasks/oneTask";
+const ONE_TASK = "api/tasks/taskId";
 const CREATE_TASK = "api/tasks/new";
 const UPDATE_TASK = "api/tasks/edit";
 const DELETE_TASK = "api/tasks/delete";
@@ -47,8 +47,8 @@ export const getAllTasks = () => async (dispatch) => {
     if (response.ok) {
         const tasks = await response.json();
         // console.log("this is the fetch's response", tasks.tasks);
-        const tasksObj = arrayToObj(tasks.tasks)
-        dispatch(loadAllTasks(tasksObj))
+        const tasksObj = arrayToObj(tasks.tasks);
+        dispatch(loadAllTasks(tasksObj));
         return response;
     };
 };
@@ -60,7 +60,7 @@ export const getOneTask = (id) => async (dispatch) => {
         const task = await response.json();
         // console.log("this is the task response", task)
         dispatch(loadOneTask(task.task))
-        return response
+        return response;
     }
 };
 
@@ -103,12 +103,14 @@ export const deleteOneTask = (id) => async (dispatch) => {
     });
 
     if (response.ok) {
+        const task = await response.json();
         dispatch(deleteOldTask(id));
+        return task;
     };
 };
 
 const initialState = {
-    allTasks : {},
+    allTasks: {},
     oneTask: {}
 };
 

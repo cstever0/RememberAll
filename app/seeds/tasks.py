@@ -1,26 +1,27 @@
 from app.models import db, Task, environment, SCHEMA
 from sqlalchemy.sql import text
+from datetime import datetime
 
 
 def seed_tasks():
     task1 = Task(
-        title='Database Migrated', description='Migrate database', user_id=1, project_id=1)
+        title='Database Migrated', description='Migrate database', user_id=1, project_id=1, due_date=datetime.now())
     task2 = Task(
-        title='Seed Data Created', description='Create seed data', user_id=1, project_id=1)
+        title='Seed Data Created', description='Create seed data', user_id=1, project_id=1, due_date=datetime.now())
     task3 = Task(
-        title='Deployed to Render', description='Deploy to render', user_id=1, project_id=3)
+        title='Deployed to Render', description='Deploy to render', user_id=1, project_id=3, due_date=datetime.now())
     task4 = Task(
-        title='Database Migrated', description='Migrate database', user_id=2, project_id=4)
+        title='Database Migrated', description='Migrate database', user_id=2, project_id=4, due_date=datetime.now())
     task5 = Task(
-        title='Seed Data Created', description='Create seed data', user_id=2, project_id=5)
+        title='Seed Data Created', description='Create seed data', user_id=2, project_id=5, due_date=datetime.now())
     task6 = Task(
-        title='Deployed to Render', description='Deploy to render', user_id=2, project_id=6)
+        title='Deployed to Render', description='Deploy to render', user_id=2, project_id=6, due_date=datetime.now())
     task7 = Task(
-        title='Database Migrated', description='Migrate database', user_id=3, project_id=7)
+        title='Database Migrated', description='Migrate database', user_id=3, project_id=7, due_date=datetime.now())
     task8 = Task(
-        title='Seed Data Created', description='Create seed data', user_id=3, project_id=8)
+        title='Seed Data Created', description='Create seed data', user_id=3, project_id=8, due_date=datetime.now())
     task9 = Task(
-        title='Deployed to Render', description='Deploy to render', user_id=3, project_id=9)
+        title='Deployed to Render', description='Deploy to render', user_id=3, project_id=9, due_date=datetime.now())
 
 
     db.session.add(task1)

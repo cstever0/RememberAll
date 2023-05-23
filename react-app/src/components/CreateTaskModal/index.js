@@ -5,7 +5,7 @@ import { useModal } from "../../context/Modal";
 import { createOneTask } from "../../store/task";
 import "./CreateTaskModal.css";
 
-function CreateTaskModal() {
+function CreateTaskModal({ projectId }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const [title, setTitle] = useState("");
@@ -22,21 +22,41 @@ function CreateTaskModal() {
         if (!title) errorObj.title = "Please enter a valid name";
         if (!dueDate) errorObj.dueDate = "Please enter a valid due date";
 
-        const item = {
-            "title": title,
-            "description": description,
-            "user_id": sessionUser.id,
-            "due_date": dueDate
-        };
+        if (!projectId) {
+            const item = {
+                "title": title,
+                "description": description,
+                "user_id": sessionUser.id,
+                "due_date": dueDate
+            };
 
-        const task = await dispatch(createOneTask(item));
-        // console.log("this is the task dispatch return", task)
-        if (task) {
-            closeModal();
-            history.push(`/tasks/${task.id}`)
+
+            const task = await dispatch(createOneTask(item));
+            // console.log("this is the task dispatch return", task);
+            if (task) {
+                closeModal();
+                history.push(`/tasks/${task.id}`);
+            } else {
+                setErrors(errorObj)
+            }
         } else {
-            setErrors(errorObj)
-        }
+            const item = {
+                "title": title,
+                "description": description,
+                "user_id": sessionUser.id,
+                "project_id": projectId,
+                "due_date": dueDate
+            }
+
+            const task = await dispatch(createOneTask(item));
+            // console.log("this is the task dispatch return", task)
+            if (task) {
+                closeModal();
+                // history.push(`/tasks/${task.id}`)
+            } else {
+                setErrors(errorObj);
+            };
+        };
     };
 
     return (
@@ -44,7 +64,7 @@ function CreateTaskModal() {
             <form
                 onSubmit={handleSubmit}
                 encType="multipart/form-data"
-				className="create-task-modal-form"
+                className="create-task-modal-form"
             >
                 <div className="modal-error-container">
                     {Object.values(errors).length > 0 &&

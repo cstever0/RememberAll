@@ -1,5 +1,6 @@
-.hidden {
-    display: none;
+.single-task-page-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 #comment-input {

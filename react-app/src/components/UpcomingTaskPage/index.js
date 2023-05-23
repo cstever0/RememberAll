@@ -4,20 +4,19 @@ import { getAllTasks } from "../../store/task";
 import SidebarNav from "../SidebarNav";
 import TaskCard from "../TaskCard";
 import monthObj from "../../utilities/monthObj";
-import "./TodayTaskPage.css"
+import "./UpcomingTaskPage.css"
 
-const TodayTaskPage = () => {
+const UpcomingTaskPage = () => {
     const dispatch = useDispatch();
     const tasks = useSelector((state) => state.tasks.allTasks);
     const projects = useSelector((state) => state.projects.allProjects);
     const todayFullDate = new Date();
-    const todayTasks = Object.values(tasks).filter(task => new Date(task.dueDate).getTime() <= todayFullDate.getTime());
-    const sortedTasks = todayTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
+    const allTasks = Object.values(tasks);
+    const sortedTasks = allTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
     const month = todayFullDate.getMonth();
     const day = todayFullDate.getDate();
     // console.log("this is new Date", todayFullDate)
     // console.log("projects output", projects[17])
-    console.log("allTasks filtered", sortedTasks)
 
     useEffect(() => {
         dispatch(getAllTasks());
@@ -31,8 +30,8 @@ const TodayTaskPage = () => {
             <div className="today-tasks-container">
                 <div className="today-tasks-list-container">
                     <div className="today-date-container">
-                        <h2>Today</h2>
-                        <p>{monthObj[month]}, {day}</p>
+                        <h2>All Tasks</h2>
+                        {/* <p>{monthObj[month]}, {day}</p> */}
                     </div>
                     {
                         sortedTasks.length > 0 &&
@@ -44,4 +43,4 @@ const TodayTaskPage = () => {
     );
 };
 
-export default TodayTaskPage;
+export default UpcomingTaskPage;
