@@ -8,6 +8,7 @@ import "./CreateTaskModal.css";
 function CreateTaskModal({ projectId }) {
     const dispatch = useDispatch();
     const history = useHistory();
+    const todayFullDate = new Date();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [dueDate, setDueDate] = useState("");
@@ -21,6 +22,7 @@ function CreateTaskModal({ projectId }) {
 
         if (!title) errorObj.title = "Please enter a valid name";
         if (!dueDate) errorObj.dueDate = "Please enter a valid due date";
+        if (new Date(dueDate).getTime() < todayFullDate.getTime()) errorObj.dueDate = "Due dates must not be in the past";
 
         if (!projectId) {
             const item = {
@@ -92,6 +94,7 @@ function CreateTaskModal({ projectId }) {
                         type="date"
                         value={dueDate}
                         onChange={(e) => setDueDate(e.target.value)}
+                        min={new Date().toISOString().split('T')[0]}
                     />
                 </div>
                 <div className="create-task-modal-submission-container">
