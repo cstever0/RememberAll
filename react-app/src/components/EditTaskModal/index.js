@@ -32,15 +32,17 @@ function EditTaskModal({task}) {
         task.title = title
         task.description = description
         task.due_date = dueDate
-        task.project_id = projectId
+
+        if (projectId < 1) task.project_id = "";
+        else task.project_id = projectId
 
         const updatedTask = await dispatch(updateOneTask(task));
         console.log("this is the task dispatch return", updatedTask);
         if (Object.values(errorObj).length) {
             setErrors(errorObj);
-            // history.push(`/tasks/${task.id}`)
         } else {
             closeModal();
+            // history.push(`/tasks/${task.id}`)
         }
     };
 

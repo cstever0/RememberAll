@@ -9,12 +9,16 @@ function CreateTaskModal({ projectId }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const todayFullDate = new Date();
+    const dateChecker = new Date(todayFullDate.setDate(todayFullDate.getDate() - 1));
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [dueDate, setDueDate] = useState("");
     const [errors, setErrors] = useState({});
     const sessionUser = useSelector((state) => state.session.user);
     const { closeModal } = useModal();
+    // console.log("dueDate", new Date(dueDate).toDateString());
+    // console.log("newDate", new Date().toDateString());
+    // console.log("dateChecker", dateChecker.toDateString());
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,7 +26,7 @@ function CreateTaskModal({ projectId }) {
 
         if (!title) errorObj.title = "Please enter a valid name";
         if (!dueDate) errorObj.dueDate = "Please enter a valid due date";
-        if (new Date(dueDate).getTime() < todayFullDate.getTime()) errorObj.dueDate = "Due dates must not be in the past";
+        if (new Date(dueDate).getTime() < dateChecker.getTime()) errorObj.dueDate = "Due dates must not be in the past";
 
         if (!projectId) {
             const item = {
@@ -32,14 +36,13 @@ function CreateTaskModal({ projectId }) {
                 "due_date": dueDate
             };
 
-
-            const task = await dispatch(createOneTask(item));
             // console.log("this is the task dispatch return", task);
-            if (task) {
+            if (Object.values(errorObj).length > 0) {
+                setErrors(errorObj);
+            } else {
+                const task = await dispatch(createOneTask(item));
                 closeModal();
                 history.push(`/tasks/${task.id}`);
-            } else {
-                setErrors(errorObj)
             }
         } else {
             const item = {
@@ -50,13 +53,13 @@ function CreateTaskModal({ projectId }) {
                 "due_date": dueDate
             }
 
-            const task = await dispatch(createOneTask(item));
             // console.log("this is the task dispatch return", task)
-            if (task) {
-                closeModal();
+            if (Object.values(errorObj).length > 0) {
+                setErrors(errorObj);
                 // history.push(`/tasks/${task.id}`)
             } else {
-                setErrors(errorObj);
+                await dispatch(createOneTask(item));
+                closeModal();
             };
         };
     };

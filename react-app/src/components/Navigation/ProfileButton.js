@@ -55,6 +55,7 @@ function ProfileButton({ user }) {
                 onClick={handleLogout}
                 className="button-type"
               >
+
                 Log Out
               </button>
             </div>
