@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, Task, Comment
+from app.models import db, Task, Comment, Project
 from app.forms import TaskForm
 
 task_routes = Blueprint('tasks', __name__)
@@ -33,6 +33,7 @@ def get_current_tasks():
     if request.method == "POST":
         form = TaskForm()
         form['csrf_token'].data = request.cookies['csrf_token']
+        form.project_id.choices = [(project.id, project.title) for project in Project.query.filter_by(user_id=current_user.id).all()]
 
         if form.validate_on_submit():
             data = form.data
