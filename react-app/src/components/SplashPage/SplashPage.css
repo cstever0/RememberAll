@@ -1,3 +1,20 @@
-/* .splash-page-container {
-    color: whitesmoke;
-} */
+.splash-page {
+    height: 99%;
+    width: 99%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.splash-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.splash-page-forms-container {
+    display: flex;
+    flex-direction: row;
+}
