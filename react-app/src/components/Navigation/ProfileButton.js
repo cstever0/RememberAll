@@ -47,10 +47,10 @@ function ProfileButton({ user }) {
       </button>
       <div className="profile-dropdown-container">
         {user && (
-          <div className={ulClassName} ref={ulRef}>
-            <p>Hello, {user.username}</p>
-            <p>{user.email}</p>
-            <div>
+          <ul className={ulClassName} ref={ulRef}>
+            <li>Hello, {user.username}</li>
+            <li>{user.email}</li>
+            <div className="dropdown-logout-button">
               <button
                 onClick={handleLogout}
                 className="button-type"
@@ -58,7 +58,7 @@ function ProfileButton({ user }) {
                 Log Out
               </button>
             </div>
-          </div>
+          </ul>
         )}
       </div>
     </div>
