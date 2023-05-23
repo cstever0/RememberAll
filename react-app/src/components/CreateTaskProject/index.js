@@ -100,6 +100,7 @@ function CreateTaskProject() {
                         type="date"
                         value={dueDate}
                         onChange={(e) => setDueDate(e.target.value)}
+                        min={new Date().toISOString().split('T')[0]}
                     />
                 </div>
                 <div className="create-task-modal-select-field">
