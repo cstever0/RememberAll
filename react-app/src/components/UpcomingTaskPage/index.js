@@ -4,14 +4,15 @@ import { getAllTasks } from "../../store/task";
 import SidebarNav from "../SidebarNav";
 import TaskCard from "../TaskCard";
 import monthObj from "../../utilities/monthObj";
-import "./TodayTaskPage.css"
+import "./UpcomingTaskPage.css"
 
 const UpcomingTaskPage = () => {
     const dispatch = useDispatch();
     const tasks = useSelector((state) => state.tasks.allTasks);
     const projects = useSelector((state) => state.projects.allProjects);
-    const allTasks = Object.values(tasks);
     const todayFullDate = new Date();
+    const allTasks = Object.values(tasks);
+    const sortedTasks = allTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
     const month = todayFullDate.getMonth();
     const day = todayFullDate.getDate();
     // console.log("this is new Date", todayFullDate)
@@ -30,11 +31,11 @@ const UpcomingTaskPage = () => {
                 <div className="today-tasks-list-container">
                     <div className="today-date-container">
                         <h2>All Tasks</h2>
-                        <p>{monthObj[month]}, {day}</p>
+                        {/* <p>{monthObj[month]}, {day}</p> */}
                     </div>
                     {
-                        allTasks.length > 0 &&
-                        allTasks.map((task) => <TaskCard key={task.id} task={task} project={projects[task.projectId]} />)
+                        sortedTasks.length > 0 &&
+                        sortedTasks.map((task) => <TaskCard key={task.id} task={task} project={projects[task.projectId]} />)
                     }
                 </div>
             </div>

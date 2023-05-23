@@ -23,9 +23,9 @@ const SidebarNav = () => {
                     </NavLink>
                 </div>
                 <div className="sidebar-nav-task">
-                    {/* <NavLink>
+                    <NavLink to="/upcoming">
                         Upcoming
-                    </NavLink> */}
+                    </NavLink>
                 </div>
             </div>
             <div className="sidebar-nav-project-cards-container">

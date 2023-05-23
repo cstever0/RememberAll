@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import SingleTaskPage from "./components/SingleTaskPage";
 import AllProjectsPage from "./components/AllProjectsPage";
 import SingProjectPage from "./components/SingleProjectPage";
+import UpcomingTaskPage from "./components/UpcomingTaskPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,10 @@ function App() {
           <Route path="/projects">
             <Navigation isLoaded={isLoaded} />
             <AllProjectsPage />
+          </Route>
+          <Route path="/upcoming">
+            <Navigation isLoaded={isLoaded} />
+            <UpcomingTaskPage />
           </Route>
           <Route path="/home">
             <Navigation isLoaded={isLoaded} />
