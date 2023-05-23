@@ -10,11 +10,15 @@ import "./SingleTaskPage.css";
 
 const SingleTaskPage = () => {
     const dispatch = useDispatch();
-    const [isHidden, setIsHidden] = useState(true)
     const { taskId } = useParams();
-    const task = useSelector((state) => state.tasks.oneTask);
     const sessionUser = useSelector((state) => state.session.user);
+    const task = useSelector((state) => state.tasks.oneTask);
+    const projects = useSelector((state) => state.projects.allProjects);
+    const allProjects = Object.values(projects);
+    const taskProject = allProjects.find((project) => project.id === task.projectId)
+    const [isHidden, setIsHidden] = useState(true);
     // console.log("this is task", task);
+    console.log("this is projects", taskProject)
 
     useEffect(() => {
         dispatch(getOneTask(taskId))
@@ -39,23 +43,35 @@ const SingleTaskPage = () => {
                 <div className="single-task-page-header">
                     <div className="single-task-header-details">
                         <h1>{task.title}</h1>
+                        <h4>{ }</h4>
                         <p>{task.description}</p>
                     </div>
-                    <div className="single-task-edit-button">
-                        <button onClick={handleClick}>
-                            <i className="fas fa-ellipsis-h"></i>
-                        </button>
-                        <div className="edit-task-dropdown-container">
-                            <div className={editTaskDropdown}>
-                                <OpenModalButton
-                                    buttonText="Edit task..."
-                                    modalComponent={<EditTaskModal task={task} />}
-                                />
-                                <OpenModalButton
-                                    buttonText="Delete task..."
-                                    modalComponent={<DeleteTaskModal id={task.id} />}
-                                />
+                    <div className="single-task-header-details-right">
+                        <div className="single-task-edit-button">
+                            <button onClick={handleClick}>
+                                <i className="fas fa-ellipsis-h"></i>
+                            </button>
+                            <div className="edit-task-dropdown-container">
+                                <div className={editTaskDropdown}>
+                                    <OpenModalButton
+                                        buttonText="Edit task..."
+                                        modalComponent={<EditTaskModal task={task} />}
+                                    />
+                                    <OpenModalButton
+                                        buttonText="Delete task..."
+                                        modalComponent={<DeleteTaskModal id={task.id} />}
+                                    />
+                                </div>
                             </div>
+                        </div>
+                        <div className="single-task-project-container">
+                            <h3>Project</h3>
+                            <p>{
+                                taskProject?.title ?
+                                taskProject.title :
+                                "No assigned project"
+                                }
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -65,6 +81,7 @@ const SingleTaskPage = () => {
                             type="text"
                             id="comment-input"
                             placeholder="Comment"
+                            disabled
                         />
                     </div>
                     <div className="single-task-comment-section">
