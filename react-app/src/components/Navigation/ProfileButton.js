@@ -53,10 +53,9 @@ function ProfileButton({ user }) {
             <div className="dropdown-logout-button">
               <button
                 onClick={handleLogout}
-                className="button-type"
+                className="negative-button-type"
               >
-
-                Log Out
+                Log out
               </button>
             </div>
           </ul>
