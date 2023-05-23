@@ -6,6 +6,7 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import OpenModalButton from '../OpenModalButton';
 import CreateTaskModal from '../CreateTaskModal';
+import CreateTaskProject from '../CreateTaskProject';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
@@ -43,7 +44,7 @@ function Navigation({ isLoaded }){
 				<div className="navigation-create-icon">
 					<OpenModalButton
 						id="navigation-create-icon"
-						modalComponent={<CreateTaskModal />}
+						modalComponent={<CreateTaskProject />}
 						buttonText={"+"}
 					>
 
