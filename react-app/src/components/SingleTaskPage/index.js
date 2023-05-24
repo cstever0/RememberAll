@@ -17,8 +17,10 @@ const SingleTaskPage = () => {
     const allProjects = Object.values(projects);
     const taskProject = allProjects.find((project) => project.id === task.projectId)
     const [isHidden, setIsHidden] = useState(true);
+    const dueDate = new Date(task.dueDate).toDateString();
+    const overDue = dueDate < new Date().toDateString();
     // console.log("this is task", task);
-    console.log("this is projects", taskProject)
+    // console.log("this is projects", taskProject)
 
     useEffect(() => {
         dispatch(getOneTask(taskId))
@@ -35,6 +37,7 @@ const SingleTaskPage = () => {
     // const { comments } = task.comments;
     // console.log("this is comments", comments);
     const editTaskDropdown = isHidden ? "hidden" : "edit-task-dropdown"
+    const overDueClass = overDue ? "red" : ""
 
     return (
         <div className="single-task-page-container">
@@ -43,8 +46,7 @@ const SingleTaskPage = () => {
                 <div className="single-task-page-header">
                     <div className="single-task-header-details">
                         <h1>{task.title}</h1>
-                        <h4>{ }</h4>
-                        <p>{task.description}</p>
+                        <h4 className={overDueClass}>{dueDate}</h4>
                     </div>
                     <div className="single-task-header-details-right">
                         <div className="single-task-edit-button">
@@ -53,26 +55,36 @@ const SingleTaskPage = () => {
                             </button>
                             <div className="edit-task-dropdown-container">
                                 <div className={editTaskDropdown}>
-                                    <OpenModalButton
-                                        buttonText="Edit task..."
-                                        modalComponent={<EditTaskModal task={task} />}
-                                    />
-                                    <OpenModalButton
-                                        buttonText="Delete task..."
-                                        modalComponent={<DeleteTaskModal id={task.id} />}
-                                    />
+                                    <div className="edit-task-modal-button">
+                                        <OpenModalButton
+                                            buttonText="Edit task..."
+                                            modalComponent={<EditTaskModal task={task} />}
+                                        />
+                                    </div>
+                                    <div className="delete-task-modal-button">
+                                        <OpenModalButton
+                                            buttonText="Delete task..."
+                                            modalComponent={<DeleteTaskModal id={task.id} />}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="single-task-project-container">
-                            <h3>Project</h3>
-                            <p>{
+                    </div>
+                </div>
+                <div className="single-task-details-container">
+                    <div className="single-task-description">
+                        <p>{task.description}</p>
+                    </div>
+                    <div className="single-task-project-details">
+                        <h3>Project</h3>
+                        <p id="task-project-title">
+                            {
                                 taskProject?.title ?
-                                taskProject.title :
-                                "No assigned project"
-                                }
-                            </p>
-                        </div>
+                                    taskProject.title :
+                                    "No assigned project"
+                            }
+                        </p>
                     </div>
                 </div>
                 <div className="single-task-page-comments-container">
