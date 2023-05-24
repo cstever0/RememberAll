@@ -14,3 +14,7 @@ button {
 .errors {
     color: red;
 }
+
+a {
+    text-decoration: none;
+}

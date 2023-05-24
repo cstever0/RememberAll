@@ -18,7 +18,10 @@ const SingleTaskPage = () => {
     const taskProject = allProjects.find((project) => project.id === task.projectId)
     const [isHidden, setIsHidden] = useState(true);
     const dueDate = new Date(task.dueDate).toDateString();
-    const overDue = dueDate < new Date().toDateString();
+    const dueDateTime = new Date(task.dueDate).getTime()
+    const todayFullDate = new Date();
+    const dateChecker = new Date(todayFullDate.setDate(todayFullDate.getDate() - 1));
+    const overDue = dueDateTime < dateChecker.getTime();
     // console.log("this is task", task);
     // console.log("this is projects", taskProject)
 
@@ -37,7 +40,7 @@ const SingleTaskPage = () => {
     // const { comments } = task.comments;
     // console.log("this is comments", comments);
     const editTaskDropdown = isHidden ? "hidden" : "edit-task-dropdown"
-    const overDueClass = overDue ? "red" : ""
+    const overDueClass = overDue ? "red" : "blue"
 
     return (
         <div className="single-task-page-container">
