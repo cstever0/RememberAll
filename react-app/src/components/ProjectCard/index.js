@@ -4,15 +4,16 @@ import "./ProjectCard.css";
 const ProjectCard = ({ project }) => {
 
     return(
-        <NavLink
-            to={`/projects/${project.id}`}
-        >
-            <div className="project-card-container">
-                <div className="project-card-title">
-                    <p>{project.title}</p>
+            <NavLink
+                to={`/projects/${project.id}`}
+            >
+                <div className="project-card-container">
+                    <div className="project-card-title">
+                        <i class="fas fa-circle"></i>
+                        <p>{project.title}</p>
+                    </div>
                 </div>
-            </div>
-        </NavLink>
+            </NavLink>
     );
 };
 

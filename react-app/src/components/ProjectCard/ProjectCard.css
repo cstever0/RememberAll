@@ -1,0 +1,21 @@
+.project-card-container {
+    margin-right: 5px;
+    padding-left: 5px;
+}
+
+.project-card-container:hover {
+    background-color: #eeeeee;
+    border-radius: 10px;
+}
+
+.project-card-title {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.project-card-title i {
+    font-size: xx-small;
+    color: #b8b8b8;
+    padding-right: 5px;
+}

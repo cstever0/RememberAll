@@ -17,25 +17,27 @@ const SidebarNav = () => {
     return (
         <div className="sidebar-nav-container">
             <div className="sidebar-nav-task-container">
-                <div className="sidebar-nav-task">
-                    <NavLink to="/home">
-                        Today
-                    </NavLink>
-                </div>
-                <div className="sidebar-nav-task">
-                    <NavLink to="/upcoming">
-                        Upcoming
-                    </NavLink>
-                </div>
+                <NavLink to="/home">
+                    <div className="sidebar-nav-task">
+                        <i class="fas fa-calendar"></i>Today
+                    </div>
+                </NavLink>
+                <NavLink to="/upcoming">
+                    <div className="sidebar-nav-task">
+                        <i class="fas fa-calendar"></i>Upcoming
+                    </div>
+                </NavLink>
             </div>
             <div className="sidebar-nav-project-cards-container">
-                <div className="side-nav-project-cards">
+                <div className="side-nav-projects-title">
                     <NavLink to="/projects">
                         Projects
                     </NavLink>
+                </div>
+                <div className="side-nav-project-cards">
                     {
                         allProjects.length > 0 &&
-                        allProjects.map((project) => <ProjectCard key={project.id} project={project}/>)
+                        allProjects.map((project) => <ProjectCard key={project.id} project={project} />)
                     }
                 </div>
             </div>
