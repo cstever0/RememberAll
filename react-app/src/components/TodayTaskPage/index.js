@@ -17,7 +17,7 @@ const TodayTaskPage = () => {
     const day = todayFullDate.getDate();
     // console.log("this is new Date", todayFullDate)
     // console.log("projects output", projects[17])
-    console.log("allTasks filtered", sortedTasks)
+    // console.log("allTasks filtered", sortedTasks)
 
     useEffect(() => {
         dispatch(getAllTasks());

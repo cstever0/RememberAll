@@ -92,6 +92,7 @@
     border: none;
     background-color: #e04c3c;
     color: white;
+    font-size: large;
 }
 
 .single-project-add-task-button > button:hover {
