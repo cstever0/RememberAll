@@ -4,6 +4,8 @@
     padding: 10px;
     border-radius: 10px;
     margin: 7px;
+    width: 30vw;
+    word-wrap: break-word;
 }
 
 .task-card-container:hover {
