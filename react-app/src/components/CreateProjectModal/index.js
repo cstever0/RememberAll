@@ -17,18 +17,19 @@ function CreateProjectModal() {
         const errorObj = {};
 
         if (!title) errorObj.title = "Please enter a name for this project";
+        if (title.length > 25) errorObj.title = "Please enter a name with less than 25 characters";
 
         const item = {
             "title": title,
             "user_id": sessionUser.id
         };
 
-        const project = await dispatch(createOneProject(item));
 
-        if (project) {
-            closeModal();
-        } else {
+        if (Object.values(errorObj).length) {
             setErrors(errorObj);
+        } else {
+            await dispatch(createOneProject(item));
+            closeModal();
         }
     };
 

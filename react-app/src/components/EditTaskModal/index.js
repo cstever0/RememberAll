@@ -38,11 +38,10 @@ function EditTaskModal({task}) {
         if (projectId < 1) task.project_id = "";
         else task.project_id = projectId
 
-        const updatedTask = await dispatch(updateOneTask(task));
-        console.log("this is the task dispatch return", updatedTask);
         if (Object.values(errorObj).length) {
             setErrors(errorObj);
         } else {
+            await dispatch(updateOneTask(task));
             closeModal();
             // history.push(`/tasks/${task.id}`)
         }
@@ -118,7 +117,7 @@ function EditTaskModal({task}) {
                             className="button-type"
                             onClick={handleSubmit}
                         >
-                            Create task
+                            Save
                         </button>
                     </div>
                 </div>

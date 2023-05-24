@@ -19,7 +19,7 @@ function CreateTaskModal({ projectId }) {
     // console.log("dueDate", new Date(dueDate).toDateString());
     // console.log("newDate", new Date().toDateString());
     // console.log("dateChecker", dateChecker.toDateString());
-    console.log(description.length)
+    // console.log(description.length)
 
     const handleSubmit = async (e) => {
         e.preventDefault();

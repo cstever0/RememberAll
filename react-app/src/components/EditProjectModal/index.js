@@ -19,16 +19,17 @@ function EditProjectModal({project}) {
         const errorObj = {};
 
         if (!title) errorObj.title = "Please enter a name for this project";
+        if (title.length > 25) errorObj.title = "Please enter a name with less than 25 characters";
 
         project.title = title;
 
-        const updatedProject = await dispatch(updateOneProject(project));
-        console.log("this is the project dispatch return", updatedProject);
 
         if (Object.values(errorObj).length) {
             setErrors(errorObj);
         } else {
             closeModal();
+            await dispatch(updateOneProject(project));
+            // console.log("this is the project dispatch return", updatedProject);
         }
     };
 
