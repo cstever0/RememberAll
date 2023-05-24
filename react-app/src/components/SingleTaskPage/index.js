@@ -59,12 +59,14 @@ const SingleTaskPage = () => {
                                         <OpenModalButton
                                             buttonText="Edit task..."
                                             modalComponent={<EditTaskModal task={task} />}
+                                            onButtonClick={() => setIsHidden(true)}
                                         />
                                     </div>
                                     <div className="delete-task-modal-button">
                                         <OpenModalButton
                                             buttonText="Delete task..."
                                             modalComponent={<DeleteTaskModal id={task.id} />}
+                                            onButtonClick={() => setIsHidden(true)}
                                         />
                                     </div>
                                 </div>
