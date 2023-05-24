@@ -1,9 +1,37 @@
+.task-card-container {
+    /* border-top: 1px solid rgb(119, 116, 116); */
+    box-shadow: 0px 0px 2px 2px rgba(78, 78, 78, 0.527);
+    padding: 10px;
+    border-radius: 10px;
+    margin: 7px;
+}
+
+.task-card-container:hover {
+    box-shadow: 0px 0px 4px 4px rgba(78, 78, 78, 0.527);
+}
+
 .task-card-container > a {
     text-decoration: none;
+}
+
+.task-card-title {
+    color: black;
 }
 
 .task-card-details-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.task-card-due-date {
+    color: blue;
+}
+
+.red {
+    color: red;
+}
+
+.task-card-project {
+    color: #b8b8b8
 }

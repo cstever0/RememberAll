@@ -6,15 +6,16 @@ export default function TaskCard({task, project}) {
     const displayDueDate = new Date(task.dueDate).toDateString();
     // console.log("task output", task);
     // console.log("project output", project);
+    const overdue = displayDueDate < new Date().toDateString() ? "task-card-due-date red" : "task-card-due-date"
 
     return (
         <div className="task-card-container">
             <NavLink key={task.id} to={`/tasks/${task.id}`}>
-                <h1 className="task-card-title">
-                    {task.title}
-                </h1>
+                <div className="task-card-title">
+                    <h2>{task.title}</h2>
+                </div>
                 <div className="task-card-details-container">
-                    <div className="task-card-due-date">
+                    <div className={overdue}>
                         {displayDueDate}
                     </div>
                     <div className="task-card-project">

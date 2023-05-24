@@ -29,11 +29,11 @@ const SidebarNav = () => {
                 </NavLink>
             </div>
             <div className="sidebar-nav-project-cards-container">
-                <div className="side-nav-projects-title">
-                    <NavLink to="/projects">
+                <NavLink to="/projects">
+                    <div className="side-nav-projects-title">
                         Projects
-                    </NavLink>
-                </div>
+                    </div>
+                </NavLink>
                 <div className="side-nav-project-cards">
                     {
                         allProjects.length > 0 &&

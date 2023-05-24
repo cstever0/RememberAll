@@ -54,14 +54,20 @@ const SingProjectPage = () => {
                         </button>
                         <div className="edit-project-dropdown-container">
                             <div className={editProjectDropdown}>
-                                <OpenModalButton
-                                    buttonText="Edit project"
-                                    modalComponent={<EditProjectModal project={project} />}
-                                />
-                                <OpenModalButton
-                                    buttonText="Delete project"
-                                    modalComponent={<DeleteProjectModal id={project.id} />}
-                                />
+                                <div className="edit-project-modal-button">
+                                    <OpenModalButton
+                                        buttonText="Edit project"
+                                        modalComponent={<EditProjectModal project={project} />}
+                                        onButtonClick={handleClick}
+                                    />
+                                </div>
+                                <div className="delete-project-modal-button">
+                                    <OpenModalButton
+                                        buttonText="Delete project"
+                                        modalComponent={<DeleteProjectModal id={project.id} />}
+                                        onButtonClick={handleClick}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -75,7 +81,7 @@ const SingProjectPage = () => {
                     </div>
                     <div className="single-project-add-task-button">
                         <OpenModalButton
-                            buttonText="+ Add task"
+                            buttonText={<i class="fas fa-plus">Add task</i>}
                             modalComponent={<CreateTaskModal projectId={project.id} />}
                         />
                     </div>
