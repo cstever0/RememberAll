@@ -29,6 +29,7 @@
     margin: 5px;
     border: 1px solid rgba(0, 0, 0, 0.507);
     border-radius: 5px;
+    height: 2vh;
 }
 
 .create-task-modal-details textarea {

@@ -36,7 +36,7 @@ function CreateProjectModal() {
     return (
         <div className="create-project-modal-container">
             <div className="create-project-modal-header">
-                <h3>Add project</h3>
+                <h2>Add project</h2>
             </div>
             <form
                 onSubmit={handleSubmit}
@@ -52,7 +52,7 @@ function CreateProjectModal() {
                     }
                 </div>
                 <div className="create-project-modal-details">
-                    <label>
+                    <label className="create-project-modal-label">
                         Name
                     </label>
                     <input
@@ -63,13 +63,15 @@ function CreateProjectModal() {
                     </input>
                 </div>
                 <div className="create-project-modal-submission-container">
-                    <div className="create-project-modal-submission-buttons">
+                    <div className="create-project-modal-cancel-button">
                         <button
                             className="button-type"
                             onClick={closeModal}
                         >
                             Cancel
                         </button>
+                    </div>
+                    <div className="create-project-modal-submit-button">
                         <button
                             className="button-type"
                             onClick={handleSubmit}
@@ -77,7 +79,6 @@ function CreateProjectModal() {
                             Add
                         </button>
                     </div>
-
                 </div>
             </form>
         </div>
