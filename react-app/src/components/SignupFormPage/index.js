@@ -29,7 +29,7 @@ function SignupFormPage() {
 
   return (
     <div className="sign-up-form-container">
-      <h1>Sign Up</h1>
+      <h1 id="sign-up-form-title">Sign Up</h1>
       <form
         onSubmit={handleSubmit}
         id="sign-up-form"

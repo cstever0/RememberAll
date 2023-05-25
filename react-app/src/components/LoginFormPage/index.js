@@ -23,7 +23,7 @@ function LoginFormPage() {
 
   return (
     <div className="log-in-form-container">
-      <h1>Log In</h1>
+      <h1 id="log-in-form-title">Log In</h1>
       <form
         onSubmit={handleSubmit}
         id="log-in-form"
