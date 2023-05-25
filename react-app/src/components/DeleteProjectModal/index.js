@@ -24,13 +24,17 @@ export default function DeleteProjectModal({id}) {
                     Are you sure you want to delete this project?
                 </p>
             </div>
-            <div className="delete-project-buttons">
-                <button onClick={closeModal}>
-                    No (Keep project)
-                </button>
-                <button onClick={deleteClick}>
-                    Yes (Delete project)
-                </button>
+            <div className="delete-project-buttons-container">
+                <div className="cancel-delete-project-button">
+                    <button onClick={closeModal}>
+                        No (Keep project)
+                    </button>
+                </div>
+                <div className="delete-project-button">
+                    <button onClick={deleteClick}>
+                        Yes (Delete project)
+                    </button>
+                </div>
             </div>
         </div>
     );

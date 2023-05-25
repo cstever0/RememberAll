@@ -6,6 +6,86 @@
 .single-task-page-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    word-wrap: break-word;
+    width: 35vw;
+}
+
+.single-task-header-details {
+    width: 30vw;
+}
+
+.blue {
+    color: blue;
+}
+
+.single-task-edit-button {
+    position: relative;
+}
+
+.single-task-edit-button > button {
+    border: 1px solid rgba(0, 0, 0, 0.226);
+    border-radius: 100px;
+    background-color: #fafafa;
+}
+
+.single-task-edit-button > button:hover {
+    background-color: #eeeeee;
+}
+
+.edit-task-dropdown-container {
+    position: absolute;
+    top: 30px;
+}
+
+.edit-task-dropdown {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 35px;
+    bottom: 0;
+}
+
+.edit-task-modal-button > button {
+    border: 1px solid blue;
+    border-radius: 10px;
+    background-color: white;
+    color: blue;
+    width: 100px;
+    margin-bottom: 5px;
+}
+
+.edit-task-modal-button > button:hover {
+    background-color: blue;
+    color: white;
+}
+
+.delete-task-modal-button > button {
+    border: 1px solid red;
+    border-radius: 10px;
+    background-color: white;
+    color: red;
+    width: 100px;
+}
+
+.delete-task-modal-button > button:hover {
+    background-color: red;
+    color: white;
+}
+
+.single-task-details-container {
+    display: flex;
+    justify-content: space-between;
+    width: 40vw;
+    word-wrap: break-word;
+}
+
+.single-task-description {
+    width: 30vw;
+}
+
+#task-project-title {
+    color: rgba(4, 20, 248, 0.568);
 }
 
 #comment-input {

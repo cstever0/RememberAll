@@ -1,0 +1,42 @@
+.log-in-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5%;
+    margin-left: 2vw;
+}
+
+#log-in-form-title {
+    color: blue;
+}
+
+#log-in-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#log-in-form label {
+    font-size: large;
+}
+
+#log-in-form input {
+    border: 1px solid rgba(0, 0, 0, 0.507);
+    border-radius: 5px;
+    height: 2vh;
+}
+
+#log-in-form button {
+    border: 1px solid blue;
+    border-radius: 10px;
+    background-color: white;
+    color: blue;
+    margin-top: 10px;
+    padding: 5px;
+    font-size: large;
+}
+
+#log-in-form button:hover {
+    background-color: blue;
+    color: white;
+}

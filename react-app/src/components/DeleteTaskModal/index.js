@@ -24,13 +24,17 @@ export default function DeleteTaskModal({id}) {
                     Are you sure you want to delete this task?
                 </p>
             </div>
-            <div className="delete-task-buttons">
-                <button onClick={closeModal}>
-                    No (Keep task)
-                </button>
-                <button onClick={deleteClick}>
-                    Yes (Delete task)
-                </button>
+            <div className="delete-task-buttons-container">
+                <div className="cancel-delete-task-button">
+                    <button onClick={closeModal}>
+                        No (Keep task)
+                    </button>
+                </div>
+                <div className="delete-task-button">
+                    <button onClick={deleteClick}>
+                        Yes (Delete task)
+                    </button>
+                </div>
             </div>
         </div>
     );

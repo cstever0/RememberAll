@@ -1,0 +1,62 @@
+.create-project-modal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+
+.create-project-modal-form {
+    padding: 5px;
+}
+
+.create-project-modal-details {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.create-project-modal-label {
+    font-size: large;
+}
+
+.create-project-modal-details input {
+    border: 1px solid rgba(0, 0, 0, 0.507);
+    border-radius: 5px;
+    height: 2vh;
+}
+
+.create-project-modal-submission-container {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.create-project-modal-cancel-button {
+    margin-right: 5px;
+}
+
+.create-project-modal-cancel-button button {
+    border: 1px solid red;
+    border-radius: 10px;
+    background-color: white;
+    color: red;
+    width: 100px;
+}
+
+.create-project-modal-cancel-button button:hover {
+    background-color: red;
+    color: white;
+}
+
+.create-project-modal-submit-button button {
+    border: 1px solid green;
+    border-radius: 10px;
+    background-color: white;
+    color: green;
+    width: 100px;
+}
+
+.create-project-modal-submit-button button:hover {
+    background-color: green;
+    color: white;
+}

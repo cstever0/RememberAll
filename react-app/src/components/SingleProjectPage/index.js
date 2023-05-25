@@ -17,25 +17,27 @@ const SingProjectPage = () => {
     const { projectId } = useParams();
     const project = useSelector((state) => state.projects.oneProject);
     const tasks = useSelector((state) => state.tasks.allTasks);
-    const allTasks = Object.values(tasks)
-    const projectTasks = allTasks.filter(task => task.projectId === project.id)
+    const allTasks = Object.values(tasks);
+    const projectTasks = allTasks.filter(task => task.projectId === project.id);
+    const sortedTasks = projectTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
     const sessionUser = useSelector((state) => state.session.user);
-    console.log("allTasks output", allTasks)
+    // console.log("allTasks output", allTasks)
 
     useEffect(() => {
-        dispatch(getOneProject(projectId))
-    }, [dispatch, projectId])
+        dispatch(getOneProject(projectId));
+        setIsHidden(true);
+    }, [dispatch, projectId]);
 
     useEffect(() => {
-        dispatch(getAllTasks())
-    }, [dispatch])
+        dispatch(getAllTasks());
+    }, [dispatch]);
 
     if (!sessionUser) return <Redirect to="/login" />;
 
     if (!Object.values(project).length) return null;
 
     const handleClick = () => {
-        setIsHidden(!isHidden)
+        setIsHidden(!isHidden);
     };
 
     const editProjectDropdown = isHidden ? "hidden" : "edit-project-dropdown";
@@ -54,14 +56,20 @@ const SingProjectPage = () => {
                         </button>
                         <div className="edit-project-dropdown-container">
                             <div className={editProjectDropdown}>
-                                <OpenModalButton
-                                    buttonText="Edit project"
-                                    modalComponent={<EditProjectModal project={project} />}
-                                />
-                                <OpenModalButton
-                                    buttonText="Delete project"
-                                    modalComponent={<DeleteProjectModal id={project.id} />}
-                                />
+                                <div className="edit-project-modal-button">
+                                    <OpenModalButton
+                                        buttonText="Edit project"
+                                        modalComponent={<EditProjectModal project={project} />}
+                                        onButtonClick={handleClick}
+                                    />
+                                </div>
+                                <div className="delete-project-modal-button">
+                                    <OpenModalButton
+                                        buttonText="Delete project"
+                                        modalComponent={<DeleteProjectModal id={project.id} />}
+                                        onButtonClick={handleClick}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -69,13 +77,13 @@ const SingProjectPage = () => {
                 <div className="single-project-page-tasks-container">
                     <div className="single-project-tasks-section">
                         {
-                            projectTasks.length > 0 &&
-                            projectTasks.map((task) => <TaskCard key={task.id} task={task} project={project} />)
+                            sortedTasks.length > 0 &&
+                            sortedTasks.map((task) => <TaskCard key={task.id} task={task} project={project} />)
                         }
                     </div>
                     <div className="single-project-add-task-button">
                         <OpenModalButton
-                            buttonText="+ Add task"
+                            buttonText={<i class="fas fa-plus">Add task</i>}
                             modalComponent={<CreateTaskModal projectId={project.id} />}
                         />
                     </div>

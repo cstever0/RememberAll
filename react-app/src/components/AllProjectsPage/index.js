@@ -24,8 +24,8 @@ const AllProjectsPage = () => {
                     <div className="all-projects-header-container">
                         <h2>Projects</h2>
                         <OpenModalButton
-                            buttonText="+ Add project"
                             modalComponent={<CreateProjectModal />}
+                            buttonText={<i class="fas fa-plus">Add project</i>}
                         />
                     </div>
                     <div className="all-projects-list">

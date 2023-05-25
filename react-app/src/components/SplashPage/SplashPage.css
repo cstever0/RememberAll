@@ -1,3 +1,45 @@
-/* .splash-page-container {
-    color: whitesmoke;
-} */
+.splash-page {
+    height: 99%;
+    width: 99%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../../assets/to-do-list.png");
+    background-size: cover;
+}
+
+.splash-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.473)
+}
+
+.splash-page-title {
+    color: #e04c3c;
+}
+
+.splash-page-forms-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.splash-page-demo-button button {
+    border: 1px solid blue;
+    border-radius: 10px;
+    background-color: white;
+    color: blue;
+    margin-top: 10px;
+    padding: 5px;
+    font-size: large;
+}
+
+.splash-page-demo-button button:hover {
+    background-color: blue;
+    color: white;
+}

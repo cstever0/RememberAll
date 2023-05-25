@@ -1,0 +1,46 @@
+.delete-task-wrapper {
+    text-align: center;
+    padding: 5px;
+}
+
+.confirm-delete-task p {
+    font-size: large;
+}
+
+.delete-task-buttons-container {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.cancel-delete-task-button {
+    margin-right: 5px;
+}
+
+.cancel-delete-task-button button {
+    border: 1px solid blue;
+    background-color: white;
+    border-radius: 10px;
+    width: 7vw;
+    padding: 5px;
+    color: blue;
+}
+
+.cancel-delete-task-button button:hover {
+    background-color: blue;
+    color: white;
+}
+
+.delete-task-button button {
+    border: 1px solid red;
+    background-color: white;
+    border-radius: 10px;
+    width: 7vw;
+    padding: 5px;
+    color: red;
+}
+
+.delete-task-button button:hover {
+    background-color: red;
+    color: white;
+}

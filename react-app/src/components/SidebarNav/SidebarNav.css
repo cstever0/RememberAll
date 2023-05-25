@@ -1,0 +1,59 @@
+.sidebar-nav-container {
+    background-color: #fafafa;
+    width: 10vw;
+    height: 100vh;
+    /* position: sticky;
+    top: 5.5vh; */
+}
+
+.sidebar-nav-task-container {
+    padding-top: 2vh;
+}
+
+.sidebar-nav-task-container a {
+    text-decoration: none;
+    color: black;
+}
+
+.sidebar-nav-task {
+    /* border: 1px solid green; */
+    padding: 5px;
+    font-size: large;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.sidebar-nav-task:hover {
+    background-color: #eeeeee;
+    border-radius: 10px;
+}
+
+.sidebar-nav-task i {
+    padding: 5px;
+    color: rgba(75,146,68,255)
+}
+
+/* .sidebar-nav-task a {
+    text-decoration: none;
+    color: black
+} */
+
+.sidebar-nav-project-cards-container {
+    padding-top: 5vh;
+}
+
+.sidebar-nav-project-cards-container a {
+    text-decoration: none;
+    color: black;
+}
+
+.side-nav-projects-title {
+    font-size: larger;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.side-nav-projects-title:hover {
+    background-color: #eeeeee;
+    border-radius: 10px;
+}

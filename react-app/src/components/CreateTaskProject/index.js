@@ -8,8 +8,9 @@ import { createOneTask } from "../../store/task";
 function CreateTaskProject() {
     const dispatch = useDispatch();
     const history = useHistory();
-    const todayFullDate = new Date();
     const sessionUser = useSelector((state) => state.session.user);
+    const todayFullDate = new Date();
+    const dateChecker = new Date(todayFullDate.setDate(todayFullDate.getDate() - 1))
     const projects = useSelector((state) => state.projects.allProjects);
     const allProjects = Object.values(projects);
     const userProjects = allProjects.filter((project) => project.userId === sessionUser.id);
@@ -20,15 +21,20 @@ function CreateTaskProject() {
     const [errors, setErrors] = useState({});
     const { closeModal } = useModal();
     // console.log("userProjects output", userProjects)
-    console.log("projectId", projectId)
+    // console.log("projectId", projectId)
+    // console.log("dueDate", new Date(dueDate).getTime());
+    // console.log("dateChecker", dateChecker.getTime());
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const errorObj = {};
 
+
         if (!title) errorObj.title = "Please enter a valid name";
+        if (title.length > 50) errorObj.title = "Please enter a name with less than 50 characters";
+        if (description.length > 250) errorObj.description = "Please keep you description under 250 characters";
         if (!dueDate) errorObj.dueDate = "Please enter a valid due date";
-        if (new Date(dueDate).getTime() < todayFullDate.getTime()) errorObj.dueDate = "Due dates must not be in the past";
+        if (new Date(dueDate).getTime() < dateChecker.getTime()) errorObj.dueDate = "Due dates must not be in the past";
 
         if (!projectId) {
             const item = {
@@ -39,13 +45,13 @@ function CreateTaskProject() {
             };
 
 
-            const task = await dispatch(createOneTask(item));
             // console.log("this is the task dispatch return", task);
-            if (task) {
+            if (Object.values(errorObj).length > 0) {
+                setErrors(errorObj)
+            } else {
+                const task = await dispatch(createOneTask(item));
                 closeModal();
                 history.push(`/tasks/${task.id}`);
-            } else {
-                setErrors(errorObj)
             }
         } else {
             const item = {
@@ -56,13 +62,13 @@ function CreateTaskProject() {
                 "due_date": dueDate
             }
 
-            const task = await dispatch(createOneTask(item));
             // console.log("this is the task dispatch return", task)
-            if (task) {
+            if (Object.values(errorObj).length > 0) {
+                setErrors(errorObj);
+            } else {
+                await dispatch(createOneTask(item));
                 closeModal();
                 history.push(`/projects/${projectId}`)
-            } else {
-                setErrors(errorObj);
             };
         };
     };
@@ -88,47 +94,51 @@ function CreateTaskProject() {
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder="Task name"
                     />
-                    <input
+                    <textarea
                         type="textarea"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder="Description"
                     />
                 </div>
-                <div className="create-task-modal-date">
-                    <input
-                        type="date"
-                        value={dueDate}
-                        onChange={(e) => setDueDate(e.target.value)}
-                        min={new Date().toISOString().split('T')[0]}
-                    />
-                </div>
-                <div className="create-task-modal-select-field">
-                    <select
-                        value={projectId}
-                        id="select-project"
-                        onChange={(e) => setProjectId(e.target.value)}
-                    >
-                        <option
-                            value={""}
-                        >Your Projects
-                        </option>
-                        {
-                            userProjects.length > 0 &&
-                            userProjects.map((project) => (
-                                <option key={project.id} value={project.id}>{project.title}</option>
-                            ))
-                        }
-                    </select>
+                <div className="create-task-modal-dropdowns">
+                    <div className="create-task-modal-date">
+                        <input
+                            type="date"
+                            value={dueDate}
+                            onChange={(e) => setDueDate(e.target.value)}
+                            min={new Date().toISOString().split('T')[0]}
+                        />
+                    </div>
+                    <div className="create-task-modal-select-field">
+                        <select
+                            value={projectId}
+                            id="select-project"
+                            onChange={(e) => setProjectId(e.target.value)}
+                        >
+                            <option
+                                value={""}
+                            >Your Projects
+                            </option>
+                            {
+                                userProjects.length > 0 &&
+                                userProjects.map((project) => (
+                                    <option key={project.id} value={project.id}>{project.title}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
                 </div>
                 <div className="create-task-modal-submission-container">
-                    <div className="create-task-modal-submission-buttons">
+                    <div className="create-task-modal-cancel-button">
                         <button
                             className="button-type"
                             onClick={closeModal}
                         >
                             Cancel
                         </button>
+                    </div>
+                    <div className="create-task-modal-submit-button">
                         <button
                             className="button-type"
                             onClick={handleSubmit}

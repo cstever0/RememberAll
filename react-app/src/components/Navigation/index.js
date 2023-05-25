@@ -12,13 +12,13 @@ function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 	const [isHidden, setIsHidden] = useState(true);
 
-	const handleMouseEnter = () => {
-		setIsHidden(false);
-	};
+	// const handleMouseEnter = () => {
+	// 	setIsHidden(false);
+	// };
 
-	const handleMouseLeave = () => {
-		setIsHidden(true);
-	};
+	// const handleMouseLeave = () => {
+	// 	setIsHidden(true);
+	// };
 
 	const navigationTooltip = isHidden ? "hidden" : "navigation-tooltip"
 
@@ -28,10 +28,10 @@ function Navigation({ isLoaded }){
 				<div className="navigation-home-icon">
 					<NavLink
 						to="/home"
-						onMouseEnter={handleMouseEnter}
-						onMouseLeave={handleMouseLeave}
+						// onMouseEnter={() => setIsHidden(false)}
+						// onMouseLeave={() => setIsHidden(true)}
 					>
-						<i class="fas fa-home"></i>
+						<i class="fas fa-home" style={{color: "#ffffff"}}></i>
 					</NavLink>
 					<div className="navigation-tooltip-container">
 						<div className={navigationTooltip}>
@@ -45,7 +45,7 @@ function Navigation({ isLoaded }){
 					<OpenModalButton
 						id="navigation-create-icon"
 						modalComponent={<CreateTaskProject />}
-						buttonText={"+"}
+						buttonText={<i class="fas fa-plus" style={{color: "#ffffff"}}></i>}
 					>
 
 					</OpenModalButton>

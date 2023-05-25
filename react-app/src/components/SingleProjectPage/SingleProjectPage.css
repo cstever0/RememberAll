@@ -6,8 +6,8 @@
 .project-tasks-container {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-self: center; */
+    /* justify-content: center;
+    align-self: center; */
     /* align-content: center; */
     /* text-align: center; */
 }
@@ -22,26 +22,79 @@
 
 .single-project-header-details {
     /* text-align: center; */
-    padding-right: 5px;
+    padding-right: 10px;
 }
 
 .single-project-edit-button {
     position: relative;
 }
 
-.edit-project-dropdown-container {
+.single-project-edit-button > button {
+    border: 1px solid rgba(0, 0, 0, 0.226);
+    border-radius: 100px;
+    background-color: #fafafa;
+}
+
+.single-project-edit-button > button:hover {
+    background-color: #eeeeee;
+}
+
+.edit-project-dropdown {
+    /* border: 2px solid red; */
+    display: flex;
     position: absolute;
+    left: 2vw;
+    top: .1vh;
+    /* bottom: .1vh; */
+    z-index: 1;
+    border-radius: 10px;
+    /* padding: 5px;
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.226); */
 }
 
-/* .single-project-page-tasks-container {
-    display: flex;
-    flex-direction: column;
+.edit-project-modal-button > button {
+    border: 1px solid blue;
+    background-color: white;
+    border-radius: 10px;
+    width: 5vw;
+    padding: 5px;
+    color: blue;
 }
 
-.single-project-tasks-section {
+.edit-project-modal-button > button:hover {
+    background-color: blue;
+    color: white;
+}
+
+.delete-project-modal-button > button {
+    border: 1px solid red;
+    background-color: white;
+    border-radius: 10px;
+    width: 5vw;
+    padding: 5px;
+    color: red;
+    margin-left: 3px;
+}
+
+.delete-project-modal-button > button:hover {
+    background-color: red;
+    color: white;
+}
+
+.single-project-add-task-button {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    align-self: center;
-} */
+    background-color: #e04c3c;
+    padding: 5px;
+}
+
+.single-project-add-task-button > button {
+    border: none;
+    background-color: #e04c3c;
+    color: white;
+    font-size: large;
+}
+
+.single-project-add-task-button > button:hover {
+    background-color: rgba(255, 255, 255, 0.158);
+}

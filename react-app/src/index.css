@@ -10,3 +10,11 @@ button {
 .hidden {
     display: none;
 }
+
+.errors {
+    color: red;
+}
+
+a {
+    text-decoration: none;
+}

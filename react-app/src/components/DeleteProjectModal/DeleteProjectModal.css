@@ -1,0 +1,46 @@
+.delete-project-wrapper {
+    text-align: center;
+    padding: 5px;
+}
+
+.confirm-delete-project p {
+    font-size: large;
+}
+
+.delete-project-buttons-container {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.cancel-delete-project-button {
+    margin-right: 5px;
+}
+
+.cancel-delete-project-button button {
+    border: 1px solid blue;
+    background-color: white;
+    border-radius: 10px;
+    width: 7vw;
+    padding: 5px;
+    color: blue;
+}
+
+.cancel-delete-project-button button:hover {
+    background-color: blue;
+    color: white;
+}
+
+.delete-project-button button {
+    border: 1px solid red;
+    background-color: white;
+    border-radius: 10px;
+    width: 7vw;
+    padding: 5px;
+    color: red;
+}
+
+.delete-project-button button:hover {
+    background-color: red;
+    color: white;
+}
