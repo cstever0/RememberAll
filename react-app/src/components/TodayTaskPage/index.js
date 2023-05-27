@@ -15,7 +15,7 @@ const TodayTaskPage = () => {
     const sortedTasks = todayTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
     const month = todayFullDate.getMonth();
     const day = todayFullDate.getDate();
-    console.log("this is new Date", todayFullDate)
+    // console.log("this is new Date", todayFullDate)
     // console.log("projects output", projects[17])
     // console.log("allTasks filtered", sortedTasks)
 
