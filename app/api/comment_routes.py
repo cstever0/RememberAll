@@ -16,12 +16,17 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-@comment_routes.route("/", methods=["POST"])
+@comment_routes.route("/", methods=["GET", "POST"])
 @login_required
-def post_comment():
+def get_current_comments():
     """
-    Post a comment to a task created by the current_user
+    Query for all comments that belong to the current_user or Post a comment to a task created by the current_user
     """
+
+    if request.method == "GET":
+        comments = Comment.query.filter(Comment.user_id == current_user.id).all()
+        response = [comment.to_dict() for comment in comments]
+        return { "comments": response }
 
     if request.method == "POST":
         form = CommentForm()
@@ -43,7 +48,7 @@ def post_comment():
             return { "errors": validation_errors_to_error_messages(form.errors) }, 400
 
 
-@comment_routes.route("/", methods=["PUT", "DELETE"])
+@comment_routes.route("/", methods=["GET", "PUT", "DELETE"])
 @login_required
 def edit_comment(id):
     """
@@ -54,6 +59,10 @@ def edit_comment(id):
 
     if not comment:
         return { "error": "We're sorry, that comment cannot be found"}, 404
+
+    if request.method == "GET":
+        response = comment.to_dict()
+        return { "comment": response }
 
     if request.method == "PUT":
         if comment.user_id == current_user.id:
