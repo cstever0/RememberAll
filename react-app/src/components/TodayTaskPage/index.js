@@ -10,7 +10,7 @@ const TodayTaskPage = () => {
     const dispatch = useDispatch();
     const tasks = useSelector((state) => state.tasks.allTasks);
     const projects = useSelector((state) => state.projects.allProjects);
-    const sessionUser = useSelector((state) => state.session.user);
+    // const sessionUser = useSelector((state) => state.session.user);
     const todayFullDate = new Date();
     const todayTasks = Object.values(tasks).filter(task => new Date(task.dueDate).getTime() <= todayFullDate.getTime());
     const sortedTasks = todayTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
