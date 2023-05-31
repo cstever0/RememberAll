@@ -31,6 +31,7 @@ const SingleTaskPage = () => {
 
     if (!sessionUser) return <Redirect to="/login" />;
 
+
     if (!Object.values(task).length) return null;
 
     const handleClick = () => {
