@@ -18,7 +18,7 @@ def get_task_comments(id):
 
 
 @task_routes.route('/', methods=["GET", "POST"])
-# @login_required
+@login_required
 def get_current_tasks():
     """
     Query for all tasks that belong to the current_user and returns them in a list of task dictionaries

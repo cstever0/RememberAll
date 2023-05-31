@@ -10,6 +10,7 @@ const UpcomingTaskPage = () => {
     const dispatch = useDispatch();
     const tasks = useSelector((state) => state.tasks.allTasks);
     const projects = useSelector((state) => state.projects.allProjects);
+    const sessionUser = useSelector((state) => state.session.user);
     const todayFullDate = new Date();
     const allTasks = Object.values(tasks);
     const sortedTasks = allTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
@@ -23,6 +24,7 @@ const UpcomingTaskPage = () => {
     }, [dispatch]);
 
     // if (!allTasks.length) return null;
+    // if (!sessionUser) return <Redirect to="/login" />;
 
     return (
         <div className="today-tasks-page-container">

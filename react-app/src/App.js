@@ -9,6 +9,7 @@ import SingleTaskPage from "./components/SingleTaskPage";
 import AllProjectsPage from "./components/AllProjectsPage";
 import SingProjectPage from "./components/SingleProjectPage";
 import UpcomingTaskPage from "./components/UpcomingTaskPage";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,24 +23,34 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path="/tasks/:taskId">
-            <Navigation isLoaded={isLoaded} />
-            <SingleTaskPage />
+            <ProtectedRoute>
+              <Navigation isLoaded={isLoaded} />
+              <SingleTaskPage />
+            </ProtectedRoute>
           </Route>
           <Route path="/projects/:projectId">
-            <Navigation isLoaded={isLoaded} />
-            <SingProjectPage />
+            <ProtectedRoute>
+              <Navigation isLoaded={isLoaded} />
+              <SingProjectPage />
+            </ProtectedRoute>
           </Route>
           <Route path="/projects">
-            <Navigation isLoaded={isLoaded} />
-            <AllProjectsPage />
+            <ProtectedRoute>
+              <Navigation isLoaded={isLoaded} />
+              <AllProjectsPage />
+            </ProtectedRoute>
           </Route>
           <Route path="/upcoming">
-            <Navigation isLoaded={isLoaded} />
-            <UpcomingTaskPage />
+            <ProtectedRoute>
+              <Navigation isLoaded={isLoaded} />
+              <UpcomingTaskPage />
+            </ProtectedRoute>
           </Route>
           <Route path="/home">
-            <Navigation isLoaded={isLoaded} />
-            <TodayTaskPage />
+            <ProtectedRoute>
+              <Navigation isLoaded={isLoaded} />
+              <TodayTaskPage />
+            </ProtectedRoute>
           </Route>
           <Route exact path={["/", "/login"]}>
             <SplashPage />

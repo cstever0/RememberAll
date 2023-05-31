@@ -11,10 +11,13 @@ const AllProjectsPage = () => {
     const dispatch = useDispatch();
     const projects = useSelector((state) => state.projects.allProjects);
     const allProjects = Object.values(projects);
+    const sessionUser = useSelector((state) => state.session.user);
 
     useEffect(() => {
         dispatch(getAllProjects());
     }, [dispatch]);
+
+    // if (!sessionUser) return <Redirect to="/login" />;
 
     return (
         <div className="all-projects-page-container">
