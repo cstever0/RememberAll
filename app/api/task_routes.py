@@ -89,7 +89,7 @@ def get_one_task(id):
                 return task.to_dict(), 202
 
             else:
-                print(form.errors)
+                # print(form.errors)
                 return form.errors, 400
 
         else:
