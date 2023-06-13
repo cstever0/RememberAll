@@ -48,7 +48,7 @@ def get_current_comments():
             return { "errors": validation_errors_to_error_messages(form.errors) }, 400
 
 
-@comment_routes.route("/", methods=["GET", "PUT", "DELETE"])
+@comment_routes.route("/<int:id>", methods=["GET", "PUT", "DELETE"])
 @login_required
 def edit_comment(id):
     """
@@ -72,8 +72,6 @@ def edit_comment(id):
             if form.validate_on_submit():
                 data = form.data
                 comment.description = data["description"]
-                comment.user_id = current_user.id
-                comment.task_id = data["task_id"]
 
                 db.session.commit()
                 return comment.to_dict(), 202

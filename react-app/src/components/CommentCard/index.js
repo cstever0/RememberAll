@@ -1,5 +1,6 @@
 import { useState } from "react";
 import OpenModalButton from "../OpenModalButton";
+import EditCommentModal from "../EditCommentModal";
 import "./CommentCard.css";
 
 export default function CommentCard({ comment }) {
@@ -26,7 +27,7 @@ export default function CommentCard({ comment }) {
                         <div className="edit-comment-modal-button">
                             <OpenModalButton
                                 buttonText="Edit comment"
-                                // modalComponent={}
+                                modalComponent={<EditCommentModal comment={comment}/>}
                                 onButtonClick={() => setIsHiddenDropdown(true)}
                             />
                         </div>

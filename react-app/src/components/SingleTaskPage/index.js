@@ -21,7 +21,7 @@ const SingleTaskPage = () => {
     const comments = useSelector((state) => state.comments.allComments);
     const allComments = Object.values(comments);
     const taskComments = allComments.filter((comment) => comment.taskId === task.id)
-    // const sortedComments = taskComments.sort((a, b) => b.id - a.id);
+    const sortedComments = taskComments.sort((a, b) => b.id - a.id);
     const [isHidden, setIsHidden] = useState(true);
     const [description, setDescription] = useState("");
     const [errors, setErrors] = useState([]);
@@ -155,8 +155,8 @@ const SingleTaskPage = () => {
                     </div>
                     <div className="single-task-comment-section">
                         {
-                            taskComments.length > 0 ?
-                                taskComments.map((comment) => {
+                            sortedComments.length > 0 ?
+                                sortedComments.map((comment) => {
                                    return <CommentCard key={comment.id} comment={comment} />
                                 })
                                 :

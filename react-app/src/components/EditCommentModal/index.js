@@ -4,22 +4,25 @@ import { useModal } from "../../context/Modal";
 import { updateOneComment } from "../../store/comment";
 import "./EditCommentModal.css";
 
-function EditCommentModal({comment}) {
+function EditCommentModal({ comment }) {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
     const [description, setDescription] = useState(comment.description);
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
+    console.log("errors", errors);
+    console.log("comment", comment);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         comment.description = description;
 
-        const comment = await dispatch(updateOneComment(comment));
+        const data = await dispatch(updateOneComment(comment));
+        console.log("data", data)
 
-        if (comment) {
-            setErrors(comment);
+        if (data) {
+            setErrors(data);
         } else {
             setErrors([]);
             closeModal();
@@ -31,9 +34,12 @@ function EditCommentModal({comment}) {
             <form
                 onSubmit={handleSubmit}
                 encType="multipart/form-data"
-				className="edit-comment-modal-form"
+                className="edit-comment-modal-form"
             >
                 <div className="comment-modal-error-container">
+                    {errors?.map((error, idx) => <p key={idx}>{error}</p>)}
+                </div>
+                <div className="edit-comment-details">
                     <textarea
                         id="comment-modal-input"
                         value={description}
