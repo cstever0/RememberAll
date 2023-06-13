@@ -1,6 +1,7 @@
 import { useState } from "react";
 import OpenModalButton from "../OpenModalButton";
 import EditCommentModal from "../EditCommentModal";
+import DeleteCommentModal from "../DeleteCommentModal";
 import "./CommentCard.css";
 
 export default function CommentCard({ comment }) {
@@ -34,7 +35,7 @@ export default function CommentCard({ comment }) {
                         <div>
                             <OpenModalButton
                                 buttonText="Delete comment"
-                                // modalComponent={}
+                                modalComponent={<DeleteCommentModal id={comment.id} />}
                                 onButtonClick={() => setIsHiddenDropdown(true)}
                             />
                         </div>
