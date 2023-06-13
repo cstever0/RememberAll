@@ -9,6 +9,7 @@ import DeleteTaskModal from "../DeleteTaskModal";
 import SidebarNav from "../SidebarNav";
 import CommentCard from "../CommentCard";
 import "./SingleTaskPage.css";
+import CatchPage from "../404Page";
 
 const SingleTaskPage = () => {
     const dispatch = useDispatch();
@@ -44,7 +45,7 @@ const SingleTaskPage = () => {
 
     if (!sessionUser) return <Redirect to="/login" />;
 
-    if (!Object.values(task).length) return null;
+    if (!Object.values(task).length) return <CatchPage />;
 
     const handleClick = () => {
         setIsHidden(!isHidden)
