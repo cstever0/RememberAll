@@ -36,7 +36,7 @@ function EditCommentModal({ comment }) {
                 encType="multipart/form-data"
                 className="edit-comment-modal-form"
             >
-                <div className="comment-modal-error-container">
+                <div className="edit-comment-modal-error-container">
                     {errors?.map((error, idx) => <p key={idx}>{error}</p>)}
                 </div>
                 <div className="edit-comment-details">
@@ -44,6 +44,7 @@ function EditCommentModal({ comment }) {
                         id="comment-modal-input"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
+                        placeholder="Comment..."
                     />
                 </div>
                 <div className="edit-task-modal-submit-button">
