@@ -31,12 +31,12 @@ function EditTaskModal({task}) {
         if (description.length > 250) errorObj.description = "Please keep you description under 250 characters";
         if (!dueDate) errorObj.dueDate = "Please enter a valid due date";
 
-        task.title = title
-        task.description = description
-        task.due_date = dueDate
+        task.title = title;
+        task.description = description;
+        task.due_date = dueDate;
 
         if (projectId < 1) task.project_id = "";
-        else task.project_id = projectId
+        else task.project_id = projectId;
 
         if (Object.values(errorObj).length) {
             setErrors(errorObj);
@@ -114,7 +114,7 @@ function EditTaskModal({task}) {
                     <div className="create-task-modal-submit-button">
                         <button
                             className="button-type"
-                            onClick={handleSubmit}
+                            type="submit"
                         >
                             Save
                         </button>
