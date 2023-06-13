@@ -7,6 +7,7 @@ import OpenModalButton from "../OpenModalButton";
 import EditTaskModal from "../EditTaskModal";
 import DeleteTaskModal from "../DeleteTaskModal";
 import SidebarNav from "../SidebarNav";
+import CommentCard from "../CommentCard";
 import "./SingleTaskPage.css";
 
 const SingleTaskPage = () => {
@@ -71,8 +72,8 @@ const SingleTaskPage = () => {
 
     // const { comments } = task.comments;
     // console.log("this is comments", comments);
-    const editTaskDropdown = isHidden ? "hidden" : "edit-task-dropdown"
-    const overDueClass = overDue ? "red" : "blue"
+    const editTaskDropdown = isHidden ? "hidden" : "edit-task-dropdown";
+    const overDueClass = overDue ? "red" : "blue";
 
     return (
         <div className="single-task-page-container">
@@ -156,7 +157,7 @@ const SingleTaskPage = () => {
                         {
                             taskComments.length > 0 ?
                                 taskComments.map((comment) => {
-                                    return <div>{comment.description}</div>
+                                   return <CommentCard key={comment.id} comment={comment} />
                                 })
                                 :
                                 <p>Add a comment about this task!</p>
