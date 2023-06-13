@@ -117,7 +117,7 @@ function CreateTaskModal({ projectId }) {
                     <div className="create-task-modal-submit-button">
                         <button
                             className="button-type"
-                            onClick={handleSubmit}
+                            type="submit"
                         >
                             Create task
                         </button>

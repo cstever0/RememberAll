@@ -88,6 +88,10 @@
     color: rgba(4, 20, 248, 0.568);
 }
 
-#comment-input {
-    cursor: not-allowed;
+#task-project-title > a {
+    color: rgba(4, 20, 248, 0.568);
 }
+
+/* #comment-input {
+    cursor: not-allowed;
+} */

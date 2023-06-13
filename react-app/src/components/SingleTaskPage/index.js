@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
 import { getOneTask } from "../../store/task";
+import { createOneComment } from "../../store/comment";
 import OpenModalButton from "../OpenModalButton";
 import EditTaskModal from "../EditTaskModal";
 import DeleteTaskModal from "../DeleteTaskModal";
@@ -15,8 +16,12 @@ const SingleTaskPage = () => {
     const task = useSelector((state) => state.tasks.oneTask);
     const projects = useSelector((state) => state.projects.allProjects);
     const allProjects = Object.values(projects);
-    const taskProject = allProjects.find((project) => project.id === task.projectId)
+    const taskProject = allProjects.find((project) => project.id === task.projectId);
+    const comments = useSelector((state) => state.comments.allComments);
+    const allComments = Object.values(comments);
     const [isHidden, setIsHidden] = useState(true);
+    const [description, setDescription] = useState("");
+    const [errors, setErrors] = useState([]);
     const dueDate = new Date(task.dueDate).toDateString();
     const dueDateTime = new Date(task.dueDate).getTime()
     const todayFullDate = new Date();
@@ -31,11 +36,27 @@ const SingleTaskPage = () => {
 
     if (!sessionUser) return <Redirect to="/login" />;
 
-
     if (!Object.values(task).length) return null;
 
     const handleClick = () => {
         setIsHidden(!isHidden)
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const item = {
+            "description": description,
+            "user_id": sessionUser.id,
+            "task_id": task.id
+        };
+
+        const comment = await dispatch(createOneComment(item));
+        // console.log("comment output", comment)
+
+        if (comment) {
+            setErrors(comment)
+        }
     };
 
     // const { comments } = task.comments;
@@ -87,26 +108,49 @@ const SingleTaskPage = () => {
                         <p id="task-project-title">
                             {
                                 taskProject?.title ?
-                                    taskProject.title :
+                                    <a href={`/projects/${taskProject.id}`}>{taskProject.title}</a>:
                                     "No assigned project"
                             }
                         </p>
                     </div>
                 </div>
                 <div className="single-task-page-comments-container">
-                    <div className="single-task-comment-input">
-                        <input
-                            type="text"
-                            id="comment-input"
-                            placeholder="Comment"
-                            disabled
-                        />
+                    <div className="single-task-comment-form">
+                        <form
+                            onSubmit={handleSubmit}
+                            encType="multipart/form-data"
+                            className="create-comment-form"
+                        >
+                            <div className="comment-error-container">
+                                {errors?.map((error, idx) => <p key={idx}>{error}</p>)}
+                            </div>
+                            <div className="create-comment-details">
+                                <textarea
+                                    id="comment-input"
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    placeholder="Comment"
+                                />
+                            </div>
+                            <div className="create-comment-submit-button">
+                                <button
+                                    type="submit"
+                                    className="button-type"
+                                >
+                                    Post comment
+                                </button>
+                            </div>
+                        </form>
                     </div>
                     <div className="single-task-comment-section">
-                        {/* {comments.map((comment) => {
-                        return <div>{comment.description}</div>
-                    })} */}
-                        <p>Comments Section Coming Soon!</p>
+                        {
+                            allComments.length > 0 ?
+                                allComments.map((comment) => {
+                                    return <div>{comment.description}</div>
+                                })
+                                :
+                                <p>Add a comment about this task!</p>
+                        }
                     </div>
                 </div>
 
