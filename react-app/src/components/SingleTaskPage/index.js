@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
 import { getOneTask } from "../../store/task";
-import { createOneComment } from "../../store/comment";
+import { createOneComment, getAllComments } from "../../store/comment";
 import OpenModalButton from "../OpenModalButton";
 import EditTaskModal from "../EditTaskModal";
 import DeleteTaskModal from "../DeleteTaskModal";
@@ -19,6 +19,8 @@ const SingleTaskPage = () => {
     const taskProject = allProjects.find((project) => project.id === task.projectId);
     const comments = useSelector((state) => state.comments.allComments);
     const allComments = Object.values(comments);
+    const taskComments = allComments.filter((comment) => comment.taskId === task.id)
+    // const sortedComments = taskComments.sort((a, b) => b.id - a.id);
     const [isHidden, setIsHidden] = useState(true);
     const [description, setDescription] = useState("");
     const [errors, setErrors] = useState([]);
@@ -29,9 +31,14 @@ const SingleTaskPage = () => {
     const overDue = dueDateTime < dateChecker.getTime();
     // console.log("this is task", task);
     // console.log("this is projects", taskProject)
+    // console.log("allComments", sortedComments)
 
     useEffect(() => {
         dispatch(getOneTask(taskId))
+    }, [dispatch, taskId]);
+
+    useEffect(() => {
+        dispatch(getAllComments())
     }, [dispatch, taskId]);
 
     if (!sessionUser) return <Redirect to="/login" />;
@@ -47,7 +54,7 @@ const SingleTaskPage = () => {
 
         const item = {
             "description": description,
-            "user_id": sessionUser.id,
+            // "user_id": sessionUser.id,
             "task_id": task.id
         };
 
@@ -55,7 +62,10 @@ const SingleTaskPage = () => {
         // console.log("comment output", comment)
 
         if (comment) {
-            setErrors(comment)
+            setErrors(comment);
+        } else {
+            setDescription("");
+            setErrors([]);
         }
     };
 
@@ -144,8 +154,8 @@ const SingleTaskPage = () => {
                     </div>
                     <div className="single-task-comment-section">
                         {
-                            allComments.length > 0 ?
-                                allComments.map((comment) => {
+                            taskComments.length > 0 ?
+                                taskComments.map((comment) => {
                                     return <div>{comment.description}</div>
                                 })
                                 :

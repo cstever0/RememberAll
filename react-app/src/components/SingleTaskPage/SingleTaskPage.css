@@ -92,6 +92,10 @@
     color: rgba(4, 20, 248, 0.568);
 }
 
+.comment-error-container {
+    color: red;
+}
+
 /* #comment-input {
     cursor: not-allowed;
 } */
