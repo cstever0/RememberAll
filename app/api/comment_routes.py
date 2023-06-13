@@ -88,7 +88,7 @@ def edit_comment(id):
         if comment.user_id == current_user.id:
             db.session.delete(comment)
             db.session.commit()
-            return { "message" "Successfully Deleted"}
+            return { "message": "Successfully Deleted"}
 
         else:
             return { "errors": "Unauthorized user" }, 401
