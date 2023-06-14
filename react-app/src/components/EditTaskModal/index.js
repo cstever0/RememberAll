@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+// import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { updateOneTask } from "../../store/task";
@@ -7,20 +7,22 @@ import "./EditTaskModal.css";
 
 function EditTaskModal({task}) {
     const dispatch = useDispatch();
-    const history = useHistory();
-    const sessionUser = useSelector((state) => state.session.user);
+    // const history = useHistory();
+    // const sessionUser = useSelector((state) => state.session.user);
     const projects = useSelector((state) => state.projects.allProjects);
     const allProjects = Object.values(projects);
-    const userProjects = allProjects.filter((project) => project.userId === sessionUser.id);
+    const labels = useSelector((state) => state.labels.allLabels);
+    const allLabels = Object.values(labels);
     const [title, setTitle] = useState(task.title);
     const [description, setDescription] = useState(task.description);
     const [dueDate, setDueDate] = useState(task.dueDate.slice(0,10));
     const [projectId, setProjectId] = useState(task.projectId);
+    const [labelId, setLabelId] = useState(task.labelId);
     const [errors, setErrors] = useState({});
     const { closeModal } = useModal();
     // console.log("this is dueDate", dueDate);
     // console.log("this is task", task)
-    console.log("this is projectId", projectId);
+    // console.log("this is projectId", projectId);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -37,6 +39,9 @@ function EditTaskModal({task}) {
 
         if (projectId < 1) task.project_id = "";
         else task.project_id = projectId;
+
+        if (labelId < 1) task.label_id = "";
+        else task.label_id = labelId;
 
         if (Object.values(errorObj).length) {
             setErrors(errorObj);
@@ -94,9 +99,27 @@ function EditTaskModal({task}) {
                             >Your Projects
                             </option>
                             {
-                                userProjects.length > 0 &&
-                                userProjects.map((project) => (
+                                allProjects.length > 0 &&
+                                allProjects.map((project) => (
                                     <option key={project.id} value={project.id}>{project.title}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
+                    <div className="create-task-modal-select-field">
+                        <select
+                            value={labelId}
+                            id="select-label"
+                            onChange={(e) => setLabelId(e.target.value)}
+                        >
+                            <option
+                                value={""}
+                            >Your Labels
+                            </option>
+                            {
+                                allLabels.length > 0 &&
+                                allLabels.map((label) => (
+                                    <option key={label.id} value={label.id}>{label.title}</option>
                                 ))
                             }
                         </select>
