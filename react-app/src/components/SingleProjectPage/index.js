@@ -9,6 +9,7 @@ import EditProjectModal from "../EditProjectModal";
 import DeleteProjectModal from "../DeleteProjectModal";
 import TaskCard from "../TaskCard";
 import SidebarNav from "../SidebarNav";
+import LoadingSpinner from "../LoadingSpinner";
 import "./SingleProjectPage.css"
 
 const SingProjectPage = () => {
@@ -34,7 +35,7 @@ const SingProjectPage = () => {
 
     if (!sessionUser) return <Redirect to="/login" />;
 
-    if (!Object.values(project).length) return null;
+    if (!Object.values(project).length) return <LoadingSpinner />;
 
     const handleClick = () => {
         setIsHidden(!isHidden);

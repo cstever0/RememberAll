@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import "./LoadPage.css";
+import "./LoadingSpinner.css";
 
-function LoadPage() {
+function LoadingSpinner() {
     const history = useHistory();
 
     const handleClick = () => {
@@ -23,4 +23,4 @@ function LoadPage() {
     )
 };
 
-export default LoadPage;
+export default LoadingSpinner;

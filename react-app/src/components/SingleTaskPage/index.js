@@ -8,8 +8,8 @@ import EditTaskModal from "../EditTaskModal";
 import DeleteTaskModal from "../DeleteTaskModal";
 import SidebarNav from "../SidebarNav";
 import CommentCard from "../CommentCard";
+import LoadingSpinner from "../LoadingSpinner";
 import "./SingleTaskPage.css";
-import CatchPage from "../404Page";
 
 const SingleTaskPage = () => {
     const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const SingleTaskPage = () => {
 
     if (!sessionUser) return <Redirect to="/login" />;
 
-    if (!Object.values(task).length) return <CatchPage />;
+    if (!Object.values(task).length) return <LoadingSpinner />;
 
     const handleClick = () => {
         setIsHidden(!isHidden)

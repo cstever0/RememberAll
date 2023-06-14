@@ -5,6 +5,7 @@ import SidebarNav from "../SidebarNav";
 import TaskCard from "../TaskCard";
 import monthObj from "../../utilities/monthObj";
 import "./TodayTaskPage.css"
+import LoadingSpinner from "../LoadingSpinner";
 
 const TodayTaskPage = () => {
     const dispatch = useDispatch();
@@ -24,8 +25,8 @@ const TodayTaskPage = () => {
         dispatch(getAllTasks());
     }, [dispatch]);
 
-    // if (!allTasks.length) return null;
-    // if (!sessionUser) return <Redirect to="/login" />;
+    if (!sessionUser) return <Redirect to="/login" />;
+    if (!allTasks.length) return <LoadingSpinner />;
 
     return (
         <div className="today-tasks-page-container">

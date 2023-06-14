@@ -5,6 +5,7 @@ import SidebarNav from "../SidebarNav";
 import ProjectCard from "../ProjectCard";
 import OpenModalButton from '../OpenModalButton';
 import CreateProjectModal from "../CreateProjectModal";
+import LoadingSpinner from "../LoadingSpinner";
 import "./AllProjectsPage.css";
 
 const AllProjectsPage = () => {
@@ -17,7 +18,9 @@ const AllProjectsPage = () => {
         dispatch(getAllProjects());
     }, [dispatch]);
 
-    // if (!sessionUser) return <Redirect to="/login" />;
+    if (!sessionUser) return <Redirect to="/login" />;
+
+    if (!allProjects.length) return <LoadingSpinner />
 
     return (
         <div className="all-projects-page-container">

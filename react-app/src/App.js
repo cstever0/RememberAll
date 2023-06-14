@@ -11,7 +11,7 @@ import SingProjectPage from "./components/SingleProjectPage";
 import UpcomingTaskPage from "./components/UpcomingTaskPage";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import CatchPage from "./components/404Page";
-import LoadPage from "./components/LoadPage";
+import LoadPage from "./components/LoadingSpinner";
 
 function App() {
   const dispatch = useDispatch();
@@ -57,8 +57,8 @@ function App() {
           <Route exact path={["/", "/login"]}>
             <SplashPage />
           </Route>
-          <Route path="/load">
-            <LoadPage />
+          <Route>
+            <CatchPage />
           </Route>
         </Switch>
       )}
