@@ -6,4 +6,3 @@ from app.models import Label
 
 class LabelForm(FlaskForm):
     title = StringField("title", validators=[DataRequired(), Length(min=1, max=25, message="Please enter a name between 1 and 25 characters.")])
-    task_id = IntegerField("task_id", validators=[Optional(strip_whitespace=True)])

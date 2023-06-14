@@ -8,6 +8,6 @@ class TaskForm(FlaskForm):
     title = StringField("title", validators=[DataRequired()])
     description = StringField("description", validators=[Optional(strip_whitespace=True)])
     project_id = SelectField("project_id", coerce=int, validate_choice=False, choices=[], validators=[Optional(strip_whitespace=True)])
+    label_id = SelectField("label_id", coerce=int, validate_choice=False, choices=[], validators=[Optional(strip_whitespace=True)])
     # due_date = DateTimeLocalField("due_date", format="%Y-%m-%dT%H:%M")
     due_date = DateField("due_date", validators=[DataRequired()])
-    # project_name = SelectField("project_name", choices=[])

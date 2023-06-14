@@ -37,7 +37,6 @@ def get_current_labels():
             new_label = Label(
                 title = data["title"],
                 user_id = current_user.id,
-                task_id = data["task_id"]
             )
 
             db.session.add(new_label)
