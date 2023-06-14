@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProjects } from "../../store/project";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import SidebarNav from "../SidebarNav";
 import ProjectCard from "../ProjectCard";
 import OpenModalButton from '../OpenModalButton';
