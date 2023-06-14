@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { createOneTask } from "../../store/task";
+import { getAllProjects } from "../../store/project";
+import { getAllLabels } from "../../store/label";
 // import "./CreateTaskModal.css";
 
 function CreateTaskModalSelect() {
@@ -26,6 +28,11 @@ function CreateTaskModalSelect() {
     // console.log("projectId", projectId)
     // console.log("dueDate", new Date(dueDate).getTime());
     // console.log("dateChecker", dateChecker.getTime());
+
+    useEffect(() => {
+        dispatch(getAllProjects());
+        dispatch(getAllLabels());
+    }, [dispatch])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
