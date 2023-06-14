@@ -1,9 +1,10 @@
 .sidebar-nav-container {
     background-color: #fafafa;
-    width: 10vw;
+    width: 13vw;
     height: 100vh;
     /* position: sticky;
     top: 5.5vh; */
+    padding-left: 1vw;
 }
 
 .sidebar-nav-task-container {
