@@ -27,6 +27,11 @@ const SidebarNav = () => {
                         <i class="fas fa-calendar"></i>Upcoming
                     </div>
                 </NavLink>
+                <NavLink to="/labels">
+                    <div className="sidebar-nav-task">
+                        <i class="fas fa-calendar"></i>Labels
+                    </div>
+                </NavLink>
             </div>
             <div className="sidebar-nav-project-cards-container">
                 <NavLink to="/projects">
