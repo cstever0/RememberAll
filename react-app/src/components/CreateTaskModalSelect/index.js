@@ -5,7 +5,6 @@ import { useModal } from "../../context/Modal";
 import { createOneTask } from "../../store/task";
 import { getAllProjects } from "../../store/project";
 import { getAllLabels } from "../../store/label";
-// import "./CreateTaskModal.css";
 
 function CreateTaskModalSelect() {
     const dispatch = useDispatch();
