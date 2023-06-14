@@ -5,29 +5,29 @@ import { getOneLabel } from "../../store/label";
 import { getAllTasks } from "../../store/task";
 import OpenModalButton from "../OpenModalButton";
 import CreateTaskModal from "../CreateTaskModal";
-import EditProjectModal from "../EditProjectModal";
-import DeleteProjectModal from "../DeleteProjectModal";
+import EditLabelModal from "../EditLabelModal";
+import DeleteLabelModal from "../DeleteLabelModal";
 import TaskCard from "../TaskCard";
 import SidebarNav from "../SidebarNav";
 import LoadingSpinner from "../LoadingSpinner";
-import "./SingleProjectPage.css"
+import "./SingleLabelPage.css"
 
-const SingProjectPage = () => {
+function SingleLabelPage () {
     const dispatch = useDispatch();
     const [isHidden, setIsHidden] = useState(true);
-    const { projectId } = useParams();
-    const project = useSelector((state) => state.projects.oneProject);
+    const { labelId } = useParams();
+    const label = useSelector((state) => state.projects.oneLabel);
     const tasks = useSelector((state) => state.tasks.allTasks);
     const allTasks = Object.values(tasks);
-    const projectTasks = allTasks.filter(task => task.projectId === project.id);
-    const sortedTasks = projectTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
+    const labelTasks = allTasks.filter(task => task.labelId === label.id);
+    const sortedTasks = labelTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
     const sessionUser = useSelector((state) => state.session.user);
     // console.log("allTasks output", allTasks)
 
     useEffect(() => {
-        dispatch(getOneProject(projectId));
+        dispatch(getOneLabel(labelId));
         setIsHidden(true);
-    }, [dispatch, projectId]);
+    }, [dispatch, labelId]);
 
     useEffect(() => {
         dispatch(getAllTasks());
@@ -35,13 +35,13 @@ const SingProjectPage = () => {
 
     if (!sessionUser) return <Redirect to="/login" />;
 
-    if (!Object.values(project).length) return <LoadingSpinner />;
+    if (!Object.values(label).length) return <LoadingSpinner />;
 
     const handleClick = () => {
         setIsHidden(!isHidden);
     };
 
-    const editProjectDropdown = isHidden ? "hidden" : "edit-project-dropdown";
+    const editLabelDropdown = isHidden ? "hidden" : "edit-project-dropdown";
 
     return (
         <div className="single-project-page-container">
@@ -56,18 +56,18 @@ const SingProjectPage = () => {
                             <i className="fas fa-ellipsis-h"></i>
                         </button>
                         <div className="edit-project-dropdown-container">
-                            <div className={editProjectDropdown}>
+                            <div className={editLabelDropdown}>
                                 <div className="edit-project-modal-button">
                                     <OpenModalButton
-                                        buttonText="Edit project"
-                                        modalComponent={<EditProjectModal project={project} />}
+                                        buttonText="Edit label"
+                                        modalComponent={<EditLabelModal label={label} />}
                                         onButtonClick={handleClick}
                                     />
                                 </div>
                                 <div className="delete-project-modal-button">
                                     <OpenModalButton
-                                        buttonText="Delete project"
-                                        modalComponent={<DeleteProjectModal id={project.id} />}
+                                        buttonText="Delete label"
+                                        modalComponent={<DeleteLabelModal id={label.id} />}
                                         onButtonClick={handleClick}
                                     />
                                 </div>
@@ -85,7 +85,7 @@ const SingProjectPage = () => {
                     <div className="single-project-add-task-button">
                         <OpenModalButton
                             buttonText={<i class="fas fa-plus">Add task</i>}
-                            modalComponent={<CreateTaskModal projectId={project.id} />}
+                            modalComponent={<CreateTaskModal labelId={label.id} />}
                         />
                     </div>
                 </div>
@@ -94,4 +94,4 @@ const SingProjectPage = () => {
     )
 };
 
-export default SingProjectPage;
+export default SingleLabelPage;

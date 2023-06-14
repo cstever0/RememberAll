@@ -12,7 +12,7 @@ import SidebarNav from "../SidebarNav";
 import LoadingSpinner from "../LoadingSpinner";
 import "./SingleProjectPage.css"
 
-const SingProjectPage = () => {
+const SingleProjectPage = () => {
     const dispatch = useDispatch();
     const [isHidden, setIsHidden] = useState(true);
     const { projectId } = useParams();
@@ -94,4 +94,4 @@ const SingProjectPage = () => {
     )
 };
 
-export default SingProjectPage;
+export default SingleProjectPage;

@@ -4,7 +4,7 @@ import { useModal } from "../../context/Modal";
 import { deleteOneLabel } from "../../store/label";
 import "./DeleteLabelModal.css"
 
-export default function DeleteLabelModal({id}) {
+function DeleteLabelModal({id}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const { closeModal } = useModal();
@@ -39,3 +39,5 @@ export default function DeleteLabelModal({id}) {
         </div>
     );
 };
+
+export default DeleteLabelModal;

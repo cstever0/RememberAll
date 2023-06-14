@@ -10,7 +10,7 @@ import TodayTaskPage from "./components/TodayTaskPage";
 import UpcomingTaskPage from "./components/UpcomingTaskPage";
 import SingleTaskPage from "./components/SingleTaskPage";
 import AllProjectsPage from "./components/AllProjectsPage";
-import SingProjectPage from "./components/SingleProjectPage";
+import SingleProjectPage from "./components/SingleProjectPage";
 import AllLabelsPage from "./components/AllLabelsPage";
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
           <Route path="/projects/:projectId">
             <ProtectedRoute>
               <Navigation isLoaded={isLoaded} />
-              <SingProjectPage />
+              <SingleProjectPage />
             </ProtectedRoute>
           </Route>
           <Route path="/projects">
