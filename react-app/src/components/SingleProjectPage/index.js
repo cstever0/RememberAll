@@ -37,7 +37,7 @@ const SingleProjectPage = () => {
 
     if (!sessionUser) return <Redirect to="/login" />;
 
-    if (!Object.values(project).length) return <LoadingSpinner />;
+    if (!project) return <LoadingSpinner />;
 
     const handleClick = () => {
         setIsHidden(!isHidden);

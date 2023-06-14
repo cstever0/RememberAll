@@ -26,7 +26,7 @@ const UpcomingTaskPage = () => {
     }, [dispatch]);
 
     if (!sessionUser) return <Redirect to="/login" />;
-    if (!allTasks.length) return <LoadingSpinner />;
+    if (!tasks) return <LoadingSpinner />;
 
     return (
         <div className="today-tasks-page-container">

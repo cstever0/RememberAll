@@ -63,7 +63,7 @@ const SingleTaskPage = () => {
 
     if (!sessionUser) return <Redirect to="/login" />;
 
-    if (!Object.values(task).length) return <LoadingSpinner />;
+    if (!task) return <LoadingSpinner />;
 
     const handleClick = () => {
         setIsHidden(!isHidden)

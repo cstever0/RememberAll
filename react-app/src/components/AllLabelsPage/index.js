@@ -21,7 +21,7 @@ const AllLabelsPage = () => {
 
     if (!sessionUser) return <Redirect to="/login" />;
 
-    if (!allLabels.length) return <LoadingSpinner />
+    if (!labels) return <LoadingSpinner />
 
     return (
         <div className="all-projects-page-container">

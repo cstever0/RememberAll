@@ -37,7 +37,7 @@ function SingleLabelPage () {
 
     if (!sessionUser) return <Redirect to="/login" />;
 
-    if (!Object.values(label).length) return <LoadingSpinner />;
+    if (!label) return <LoadingSpinner />;
 
     const handleClick = () => {
         setIsHidden(!isHidden);

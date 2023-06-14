@@ -66,9 +66,10 @@ function CreateTaskModalSelect() {
             if (Object.values(errorObj).length > 0) {
                 setErrors(errorObj);
             } else {
-                await dispatch(createOneTask(item));
+                const task = await dispatch(createOneTask(item));
                 closeModal();
-                history.push(`/projects/${projectId}`)
+                // history.push(`/projects/${projectId}`)
+                history.push(`/tasks/${task.id}`);
             };
 
         } else if (!projectId) {
@@ -83,9 +84,10 @@ function CreateTaskModalSelect() {
             if (Object.values(errorObj).length > 0) {
                 setErrors(errorObj);
             } else {
-                await dispatch(createOneTask(item));
+                const task = await dispatch(createOneTask(item));
                 closeModal();
-                history.push(`/labels/${labelId}`)
+                // history.push(`/labels/${labelId}`)
+                history.push(`/tasks/${task.id}`);
             };
 
         } else {
