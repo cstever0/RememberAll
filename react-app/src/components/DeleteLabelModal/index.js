@@ -1,19 +1,19 @@
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useModal } from "../../context/Modal";
-import { deleteOneProject } from "../../store/project";
-import "./DeleteProjectModal.css"
+import { deleteOneLabel } from "../../store/label";
+import "./DeleteLabelModal.css"
 
-export default function DeleteProjectModal({id}) {
+export default function DeleteLabelModal({id}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const { closeModal } = useModal();
 
     const confirmDelete = async (e) => {
         e.preventDefault();
-        await dispatch(deleteOneProject(id));
+        await dispatch(deleteOneLabel(id));
         closeModal();
-        history.push("/projects");
+        history.push("/labels");
     };
 
     return (
@@ -21,18 +21,18 @@ export default function DeleteProjectModal({id}) {
             <div className="confirm-delete-project">
                 <h1>Confirm Delete</h1>
                 <p>
-                    Are you sure you want to delete this project?
+                    Are you sure you want to delete this label?
                 </p>
             </div>
             <div className="delete-project-buttons-container">
                 <div className="cancel-delete-project-button">
                     <button onClick={closeModal}>
-                        No (Keep project)
+                        No (Keep label)
                     </button>
                 </div>
                 <div className="delete-project-button">
                     <button onClick={confirmDelete}>
-                        Yes (Delete project)
+                        Yes (Delete label)
                     </button>
                 </div>
             </div>

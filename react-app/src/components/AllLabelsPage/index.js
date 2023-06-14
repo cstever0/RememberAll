@@ -1,27 +1,27 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProjects } from "../../store/project";
+import { getAllLabels } from "../../store/label";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import SidebarNav from "../SidebarNav";
-import ProjectCard from "../ProjectCard";
+import LabelCard from "../LabelCard";
 import OpenModalButton from '../OpenModalButton';
-import CreateProjectModal from "../CreateProjectModal";
+import CreateLabelModal from "../CreateLabelModal";
 import LoadingSpinner from "../LoadingSpinner";
-import "./AllProjectsPage.css";
+import "./AllLabelsPage.css";
 
-const AllProjectsPage = () => {
+const AllLabelsPage = () => {
     const dispatch = useDispatch();
-    const projects = useSelector((state) => state.projects.allProjects);
-    const allProjects = Object.values(projects);
+    const labels = useSelector((state) => state.labels.allLabels);
+    const allLabels = Object.values(labels);
     const sessionUser = useSelector((state) => state.session.user);
 
     useEffect(() => {
-        dispatch(getAllProjects());
+        dispatch(getAllLabels());
     }, [dispatch]);
 
     if (!sessionUser) return <Redirect to="/login" />;
 
-    if (!allProjects.length) return <LoadingSpinner />
+    if (!allLabels.length) return <LoadingSpinner />
 
     return (
         <div className="all-projects-page-container">
@@ -29,16 +29,16 @@ const AllProjectsPage = () => {
             <div className="all-projects-container">
                 <div className="all-projects-list-container">
                     <div className="all-projects-header-container">
-                        <h2>Projects</h2>
+                        <h2>Labels</h2>
                         <OpenModalButton
-                            modalComponent={<CreateProjectModal />}
-                            buttonText={<i class="fas fa-plus">Add project</i>}
+                            modalComponent={<CreateLabelModal />}
+                            buttonText={<i class="fas fa-plus">Add label</i>}
                         />
                     </div>
                     <div className="all-projects-list">
                         {
-                            allProjects.length > 0 &&
-                            allProjects.map((project) => <ProjectCard key={project.id} project={project} />)
+                            allLabels.length > 0 &&
+                            allLabels.map((label) => <LabelCard key={label.id} label={label} />)
                         }
                     </div>
                 </div>
@@ -47,4 +47,4 @@ const AllProjectsPage = () => {
     )
 };
 
-export default AllProjectsPage;
+export default AllLabelsPage;
