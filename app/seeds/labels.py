@@ -4,13 +4,13 @@ from sqlalchemy.sql import text
 
 def seed_labels():
     in_progress = Label(
-        title="in progress", user_id=1
+        title="In Progress", user_id=1
     )
     completed = Label(
-        title="completed", user_id=1
+        title="Completed", user_id=1
     )
     behind_schedule = Label(
-        title="behind schedule", user_id=1
+        title="Behind Schedule", user_id=1
     )
 
     db.session.add(in_progress)

@@ -19,6 +19,9 @@ const SingleTaskPage = () => {
     const projects = useSelector((state) => state.projects.allProjects);
     const allProjects = Object.values(projects);
     const taskProject = allProjects.find((project) => project.id === task.projectId);
+    const labels = useSelector((state) => state.labels.allLabels);
+    const allLabels = Object.values(labels);
+    const taskLabel = allLabels.find((label) => label.id === task.labelId);
     const comments = useSelector((state) => state.comments.allComments);
     const allComments = Object.values(comments);
     const taskComments = allComments.filter((comment) => comment.taskId === task.id)
@@ -113,17 +116,38 @@ const SingleTaskPage = () => {
                 </div>
                 <div className="single-task-details-container">
                     <div className="single-task-description">
-                        <p>{task.description}</p>
-                    </div>
-                    <div className="single-task-project-details">
-                        <h3>Project</h3>
-                        <p id="task-project-title">
+                        <p>
                             {
-                                taskProject?.title ?
-                                    <a href={`/projects/${taskProject.id}`}>{taskProject.title}</a>:
-                                    "No assigned project"
+                                task.description ?
+                                task.description
+                                :
+                                "Your task has no description..."
                             }
                         </p>
+                    </div>
+                    <div>
+                        <div className="single-task-project-details">
+                            <h3>Project</h3>
+                            <p className="task-link-title">
+                                {
+                                    taskProject?.title ?
+                                        <a href={`/projects/${taskProject.id}`}>{taskProject.title}</a>
+                                        :
+                                        "No assigned project"
+                                }
+                            </p>
+                        </div>
+                        <div className="single-task-project-details">
+                            <h3>Label</h3>
+                            <p className="task-link-title">
+                                {
+                                    taskLabel?.title ?
+                                        <a href={`/labels/${taskLabel.id}`}>{taskLabel.title}</a>
+                                        :
+                                        "No assigned label"
+                                }
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div className="single-task-page-comments-container">
@@ -158,7 +182,7 @@ const SingleTaskPage = () => {
                         {
                             sortedComments.length > 0 ?
                                 sortedComments.map((comment) => {
-                                   return <CommentCard key={comment.id} comment={comment} />
+                                    return <CommentCard key={comment.id} comment={comment} />
                                 })
                                 :
                                 <p>Add a comment about this task!</p>

@@ -84,11 +84,11 @@
     width: 30vw;
 }
 
-#task-project-title {
+.task-link-title {
     color: rgba(4, 20, 248, 0.568);
 }
 
-#task-project-title > a {
+.task-link-title > a {
     color: rgba(4, 20, 248, 0.568);
 }
 
