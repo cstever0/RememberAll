@@ -3,7 +3,7 @@ import { arrayToObj } from "../utilities/arrayToObj";
 const ALL_COMMENTS = "api/comments";
 const CREATE_COMMENT = "api/comments/new";
 const UPDATE_COMMENT = "api/comments/edit";
-const DELETE_COMMENT = "api/comments/delete"
+const DELETE_COMMENT = "api/comments/delete";
 
 const loadAllComments = (comments) => {
     return {
@@ -41,7 +41,7 @@ export const getAllComments = () => async (dispatch) => {
         // console.log("this is the fetch's response", comments);
         const commentsObj = arrayToObj(comments.comments);
         dispatch(loadAllComments(commentsObj));
-        return response
+        return response;
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {

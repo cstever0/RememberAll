@@ -4,12 +4,14 @@ import session from './session'
 import tasksReducer from './task';
 import projectsReducer from './project';
 import commentsReducer from './comment';
+import labelsReducer from './label';
 
 const rootReducer = combineReducers({
   session,
   tasks: tasksReducer,
   projects: projectsReducer,
   comments: commentsReducer,
+  labels: labelsReducer,
 });
 
 
