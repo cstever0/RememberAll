@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
 import { getOneTask } from "../../store/task";
@@ -14,6 +14,7 @@ import "./SingleTaskPage.css";
 const SingleTaskPage = () => {
     const dispatch = useDispatch();
     const { taskId } = useParams();
+    // const ulRef = useRef();
     const sessionUser = useSelector((state) => state.session.user);
     const task = useSelector((state) => state.tasks.oneTask);
     const projects = useSelector((state) => state.projects.allProjects);
@@ -45,6 +46,20 @@ const SingleTaskPage = () => {
     useEffect(() => {
         dispatch(getAllComments())
     }, [dispatch, taskId]);
+
+    // useEffect(() => {
+    //     if (isHidden) return;
+
+    //     const closeMenu = (e) => {
+    //         if (!ulRef.current.contains(e.target)) {
+    //             setIsHidden(true);
+    //         }
+    //     };
+
+    //     document.addEventListener("click", closeMenu);
+
+    //     return () => document.removeEventListener("click", closeMenu);
+    // }, [isHidden]);
 
     if (!sessionUser) return <Redirect to="/login" />;
 
@@ -119,9 +134,9 @@ const SingleTaskPage = () => {
                         <p>
                             {
                                 task.description ?
-                                task.description
-                                :
-                                "Your task has no description..."
+                                    task.description
+                                    :
+                                    "Your task has no description..."
                             }
                         </p>
                     </div>
