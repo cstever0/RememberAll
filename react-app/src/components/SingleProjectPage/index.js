@@ -17,6 +17,8 @@ const SingleProjectPage = () => {
     const [isHidden, setIsHidden] = useState(true);
     const { projectId } = useParams();
     const project = useSelector((state) => state.projects.oneProject);
+    const labels = useSelector((state) => state.labels.allLabels);
+    const allLabels = Object.values(labels);
     const tasks = useSelector((state) => state.tasks.allTasks);
     const allTasks = Object.values(tasks);
     const projectTasks = allTasks.filter(task => task.projectId === project.id);
@@ -79,7 +81,7 @@ const SingleProjectPage = () => {
                     <div className="single-project-tasks-section">
                         {
                             sortedTasks.length > 0 &&
-                            sortedTasks.map((task) => <TaskCard key={task.id} task={task} project={project} />)
+                            sortedTasks.map((task) => <TaskCard key={task.id} task={task} project={project} label={allLabels.find((label) => label.id === task.labelId)} />)
                         }
                     </div>
                     <div className="single-project-add-task-button">
