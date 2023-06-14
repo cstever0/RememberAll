@@ -13,11 +13,13 @@ function CreateTaskProject() {
     const dateChecker = new Date(todayFullDate.setDate(todayFullDate.getDate() - 1))
     const projects = useSelector((state) => state.projects.allProjects);
     const allProjects = Object.values(projects);
-    const userProjects = allProjects.filter((project) => project.userId === sessionUser.id);
+    const labels = useSelector((state) => state.labels.allLabels);
+    const allLabels = Object.values(labels);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [dueDate, setDueDate] = useState("");
     const [projectId, setProjectId] = useState();
+    const [labelId, setLabelId] = useState();
     const [errors, setErrors] = useState({});
     const { closeModal } = useModal();
     // console.log("userProjects output", userProjects)
@@ -36,7 +38,7 @@ function CreateTaskProject() {
         if (!dueDate) errorObj.dueDate = "Please enter a valid due date";
         if (new Date(dueDate).getTime() < dateChecker.getTime()) errorObj.dueDate = "Due dates must not be in the past";
 
-        if (!projectId) {
+        if (!projectId && !labelId) {
             const item = {
                 "title": title,
                 "description": description,
@@ -44,25 +46,23 @@ function CreateTaskProject() {
                 "due_date": dueDate
             };
 
-
-            // console.log("this is the task dispatch return", task);
             if (Object.values(errorObj).length > 0) {
                 setErrors(errorObj)
             } else {
                 const task = await dispatch(createOneTask(item));
                 closeModal();
                 history.push(`/tasks/${task.id}`);
-            }
-        } else {
+            };
+
+        } else if (!labelId) {
             const item = {
                 "title": title,
                 "description": description,
                 "user_id": sessionUser.id,
                 "project_id": projectId,
                 "due_date": dueDate
-            }
+            };
 
-            // console.log("this is the task dispatch return", task)
             if (Object.values(errorObj).length > 0) {
                 setErrors(errorObj);
             } else {
@@ -70,7 +70,42 @@ function CreateTaskProject() {
                 closeModal();
                 history.push(`/projects/${projectId}`)
             };
-        };
+
+        } else if (!projectId) {
+            const item = {
+                "title": title,
+                "description": description,
+                "user_id": sessionUser.id,
+                "label_id": labelId,
+                "due_date": dueDate
+            };
+
+            if (Object.values(errorObj).length > 0) {
+                setErrors(errorObj);
+            } else {
+                await dispatch(createOneTask(item));
+                closeModal();
+                history.push(`/labels/${labelId}`)
+            };
+
+        } else {
+            const item = {
+                "title": title,
+                "description": description,
+                "user_id": sessionUser.id,
+                "project_id": projectId,
+                "label_id": labelId,
+                "due_date": dueDate
+            };
+
+            if (Object.values(errorObj).length > 0) {
+                setErrors(errorObj);
+            } else {
+                const task = await dispatch(createOneTask(item));
+                closeModal();
+                history.push(`/tasks/${task.id}`)
+            };
+        }
     };
 
     return (
@@ -121,9 +156,27 @@ function CreateTaskProject() {
                             >Your Projects
                             </option>
                             {
-                                userProjects.length > 0 &&
-                                userProjects.map((project) => (
+                                allProjects.length > 0 &&
+                                allProjects.map((project) => (
                                     <option key={project.id} value={project.id}>{project.title}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
+                    <div className="create-task-modal-select-field">
+                        <select
+                            value={labelId}
+                            id="select-label"
+                            onChange={(e) => setLabelId(e.target.value)}
+                        >
+                            <option
+                                value={""}
+                            >Your Labels
+                            </option>
+                            {
+                                allLabels.length > 0 &&
+                                allLabels.map((label) => (
+                                    <option key={label.id} value={label.id}>{label.title}</option>
                                 ))
                             }
                         </select>

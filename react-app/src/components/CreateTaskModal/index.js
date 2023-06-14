@@ -5,7 +5,7 @@ import { useModal } from "../../context/Modal";
 import { createOneTask } from "../../store/task";
 import "./CreateTaskModal.css";
 
-function CreateTaskModal({ projectId }) {
+function CreateTaskModal({ projectId, labelId }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const todayFullDate = new Date();
@@ -36,6 +36,7 @@ function CreateTaskModal({ projectId }) {
                 "title": title,
                 "description": description,
                 "user_id": sessionUser.id,
+                "label_id": labelId,
                 "due_date": dueDate
             };
 
@@ -45,7 +46,7 @@ function CreateTaskModal({ projectId }) {
             } else {
                 const task = await dispatch(createOneTask(item));
                 closeModal();
-                history.push(`/tasks/${task.id}`);
+                // history.push(`/tasks/${task.id}`);
             }
         } else {
             const item = {
