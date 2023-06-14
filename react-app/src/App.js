@@ -12,6 +12,7 @@ import SingleTaskPage from "./components/SingleTaskPage";
 import AllProjectsPage from "./components/AllProjectsPage";
 import SingleProjectPage from "./components/SingleProjectPage";
 import AllLabelsPage from "./components/AllLabelsPage";
+import SingleLabelPage from "./components/SingleLabelPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,12 @@ function App() {
             <ProtectedRoute>
               <Navigation isLoaded={isLoaded} />
               <SingleProjectPage />
+            </ProtectedRoute>
+          </Route>
+          <Route path="/labels/:labelId">
+            <ProtectedRoute>
+              <Navigation isLoaded={isLoaded} />
+              <SingleLabelPage />
             </ProtectedRoute>
           </Route>
           <Route path="/projects">

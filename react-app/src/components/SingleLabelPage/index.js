@@ -16,7 +16,9 @@ function SingleLabelPage () {
     const dispatch = useDispatch();
     const [isHidden, setIsHidden] = useState(true);
     const { labelId } = useParams();
-    const label = useSelector((state) => state.projects.oneLabel);
+    const label = useSelector((state) => state.labels.oneLabel);
+    const projects = useSelector((state) => state.projects.allProjects);
+    const allProjects = Object.values(projects);
     const tasks = useSelector((state) => state.tasks.allTasks);
     const allTasks = Object.values(tasks);
     const labelTasks = allTasks.filter(task => task.labelId === label.id);
@@ -49,7 +51,7 @@ function SingleLabelPage () {
             <div className="project-tasks-container">
                 <div className="single-project-page-header">
                     <div className="single-project-header-details">
-                        <h1>{project.title}</h1>
+                        <h1>{label.title}</h1>
                     </div>
                     <div className="single-project-edit-button">
                         <button onClick={handleClick}>
@@ -79,7 +81,7 @@ function SingleLabelPage () {
                     <div className="single-project-tasks-section">
                         {
                             sortedTasks.length > 0 &&
-                            sortedTasks.map((task) => <TaskCard key={task.id} task={task} project={project} />)
+                            sortedTasks.map((task) => <TaskCard key={task.id} task={task} label={label} project={allProjects.find((project) => project.taskId === task.id)} />)
                         }
                     </div>
                     <div className="single-project-add-task-button">
