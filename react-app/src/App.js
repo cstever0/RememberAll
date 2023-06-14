@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SplashPage from "./components/SplashPage";
-import TodayTaskPage from "./components/TodayTaskPage";
 import { authenticate } from "./store/session";
+import SplashPage from "./components/SplashPage";
+import CatchPage from "./components/404Page";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Navigation from "./components/Navigation";
+import TodayTaskPage from "./components/TodayTaskPage";
+import UpcomingTaskPage from "./components/UpcomingTaskPage";
 import SingleTaskPage from "./components/SingleTaskPage";
 import AllProjectsPage from "./components/AllProjectsPage";
 import SingProjectPage from "./components/SingleProjectPage";
-import UpcomingTaskPage from "./components/UpcomingTaskPage";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
-import CatchPage from "./components/404Page";
-import LoadPage from "./components/LoadingSpinner";
+import AllLabelsPage from "./components/AllLabelsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +40,12 @@ function App() {
             <ProtectedRoute>
               <Navigation isLoaded={isLoaded} />
               <AllProjectsPage />
+            </ProtectedRoute>
+          </Route>
+          <Route path="/labels">
+            <ProtectedRoute>
+              <Navigation isLoaded={isLoaded} />
+              <AllLabelsPage />
             </ProtectedRoute>
           </Route>
           <Route path="/upcoming">
