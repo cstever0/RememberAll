@@ -5,7 +5,7 @@ import { useModal } from "../../context/Modal";
 import { createOneTask } from "../../store/task";
 // import "./CreateTaskModal.css";
 
-function CreateTaskProject() {
+function CreateTaskModalSelect() {
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
@@ -205,4 +205,4 @@ function CreateTaskProject() {
     )
 };
 
-export default CreateTaskProject;
+export default CreateTaskModalSelect;
