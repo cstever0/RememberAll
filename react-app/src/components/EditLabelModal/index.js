@@ -2,14 +2,14 @@ import { useState } from "react";
 import { useHistory, Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { updateOneProject } from "../../store/project";
-import "./EditProjectModal.css";
+import { updateOneLabel } from "../../store/label";
+import "./EditLabelModal.css";
 
 
-function EditProjectModal({project}) {
+function EditLabelModal({ label }) {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [title, setTitle] = useState(project.title);
+    const [title, setTitle] = useState(label.title);
     const [errors, setErrors] = useState({});
     const sessionUser = useSelector((state) => state.session.user);
     const { closeModal } = useModal();
@@ -18,26 +18,27 @@ function EditProjectModal({project}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const errorObj = {};
+        // const errorObj = {};
 
-        if (!title) errorObj.title = "Please enter a name for this project";
-        if (title.length > 25) errorObj.title = "Please enter a name with less than 25 characters";
+        // if (!title) errorObj.title = "Please enter a name for this label";
+        // if (title.length > 25) errorObj.title = "Please enter a name with less than 25 characters";
 
-        project.title = title;
+        label.title = title;
 
-        if (Object.values(errorObj).length) {
-            setErrors(errorObj);
+        const data = await dispatch(updateOneLabel(label));
+        // console.log("data output", data)
+
+        if (data) {
+            setErrors(data);
         } else {
             closeModal();
-            await dispatch(updateOneProject(project));
-            // console.log("this is the project dispatch return", updatedProject);
         }
     };
 
     return (
         <div className="create-project-modal-container">
             <div className="create-project-modal-header">
-                <h2>Edit project</h2>
+                <h2>Edit label</h2>
             </div>
             <form
                 onSubmit={handleSubmit}
@@ -45,12 +46,7 @@ function EditProjectModal({project}) {
                 className="create-project-modal-form"
             >
                 <div className="modal-error-container">
-                    {
-                        Object.values(errors).length > 0 &&
-                        Object.values(errors).map((error) => {
-                            return <p>{error}</p>
-                        })
-                    }
+                    {errors?.map((error, idx) => <p key={idx}>{error}</p>)}
                 </div>
                 <div className="create-project-modal-details">
                     <label className="create-project-modal-label">
@@ -86,4 +82,4 @@ function EditProjectModal({project}) {
     )
 };
 
-export default EditProjectModal;
+export default EditLabelModal;
