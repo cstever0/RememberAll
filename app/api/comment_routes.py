@@ -58,7 +58,7 @@ def edit_comment(id):
     comment = Comment.query.get(id)
 
     if not comment:
-        return { "error": "We're sorry, that comment cannot be found"}, 404
+        return { "error": "We're sorry, that comment cannot be found" }, 404
 
     if request.method == "GET":
         response = comment.to_dict()
@@ -74,13 +74,13 @@ def edit_comment(id):
                 comment.description = data["description"]
 
                 db.session.commit()
-                return comment.to_dict(), 202
+                return comment.to_dict(), 201
 
             else:
                 return { "errors": validation_errors_to_error_messages(form.errors) }, 400
 
         else:
-            return { "errors": "Unauthorized user" }, 401
+            return { "errors": "Unauthorized User" }, 401
 
     if request.method == "DELETE":
         if comment.user_id == current_user.id:
@@ -89,4 +89,4 @@ def edit_comment(id):
             return { "message": "Successfully Deleted"}
 
         else:
-            return { "errors": "Unauthorized user" }, 401
+            return { "errors": "Unauthorized User" }, 401
