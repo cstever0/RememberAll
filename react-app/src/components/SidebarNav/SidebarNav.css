@@ -28,9 +28,19 @@
     border-radius: 10px;
 }
 
-.sidebar-nav-task i {
+#sidebar-nav-today {
     padding: 5px;
     color: rgba(75,146,68,255)
+}
+
+#sidebar-nav-upcoming {
+    padding: 5px;
+    color: rgba(105,46,194,255)
+}
+
+#sidebar-nav-label {
+    padding: 5px;
+    color: rgba(205,129,29,255)
 }
 
 /* .sidebar-nav-task a {
