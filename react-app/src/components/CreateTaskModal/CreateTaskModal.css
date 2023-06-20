@@ -46,14 +46,14 @@
     padding: 5px;
 }
 
-.create-task-modal-date {
-    margin-right: 5px;
-}
-
 .create-task-modal-date input {
     border: 1px solid rgba(0, 0, 0, 0.507);
     border-radius: 5px;
     padding: 2px;
+}
+
+.create-task-modal-select-field {
+    margin-left: 5px;
 }
 
 .create-task-modal-select-field select {

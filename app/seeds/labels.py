@@ -3,19 +3,16 @@ from sqlalchemy.sql import text
 
 
 def seed_labels():
-    read = Label(
-        title='read')
     in_progress = Label(
-        title="in progress"
+        title="In Progress", user_id=1
     )
     completed = Label(
-        title="completed"
+        title="Completed", user_id=1
     )
     behind_schedule = Label(
-        title="behind schedule", user_id=1
+        title="Behind Schedule", user_id=1
     )
 
-    db.session.add(read)
     db.session.add(in_progress)
     db.session.add(completed)
     db.session.add(behind_schedule)

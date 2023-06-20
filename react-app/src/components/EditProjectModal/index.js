@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { updateOneProject } from "../../store/project";
@@ -13,6 +13,8 @@ function EditProjectModal({project}) {
     const [errors, setErrors] = useState({});
     const sessionUser = useSelector((state) => state.session.user);
     const { closeModal } = useModal();
+
+    if (!sessionUser) return <Redirect to="/login" />;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -73,7 +75,7 @@ function EditProjectModal({project}) {
                     <div className="create-project-modal-submit-button">
                         <button
                             className="button-type"
-                            onClick={handleSubmit}
+                            type="submit"
                         >
                             Save
                         </button>

@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProjects } from "../../store/project";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import SidebarNav from "../SidebarNav";
 import ProjectCard from "../ProjectCard";
 import OpenModalButton from '../OpenModalButton';
 import CreateProjectModal from "../CreateProjectModal";
+import LoadingSpinner from "../LoadingSpinner";
 import "./AllProjectsPage.css";
 
 const AllProjectsPage = () => {
@@ -17,7 +19,9 @@ const AllProjectsPage = () => {
         dispatch(getAllProjects());
     }, [dispatch]);
 
-    // if (!sessionUser) return <Redirect to="/login" />;
+    if (!sessionUser) return <Redirect to="/login" />;
+
+    if (!projects) return <LoadingSpinner />
 
     return (
         <div className="all-projects-page-container">

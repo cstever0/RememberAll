@@ -1,0 +1,70 @@
+.edit-comment-modal-container {
+    /* border: 1px solid red; */
+    padding: 10px;
+}
+
+.edit-comment-modal-form {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid blue; */
+}
+
+.modal-error-container {
+    color: red;
+}
+
+.edit-comment-modal-details {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.edit-comment-modal-details input {
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.507);
+    border-radius: 5px;
+    height: 2vh;
+}
+
+.edit-comment-modal-details textarea {
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.507);
+    border-radius: 5px;
+    height: 10vh;
+}
+
+.edit-comment-modal-submission-container {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.edit-comment-modal-cancel-button {
+    margin-right: 5px;
+}
+
+.edit-comment-modal-cancel-button button {
+    border: 1px solid red;
+    border-radius: 10px;
+    background-color: white;
+    color: red;
+    width: 100px;
+}
+
+.edit-comment-modal-cancel-button button:hover {
+    background-color: red;
+    color: white;
+}
+
+.edit-comment-modal-submit-button button {
+    border: 1px solid green;
+    border-radius: 10px;
+    background-color: white;
+    color: green;
+    width: 100px;
+}
+
+.edit-comment-modal-submit-button button:hover {
+    background-color: green;
+    color: white;
+}

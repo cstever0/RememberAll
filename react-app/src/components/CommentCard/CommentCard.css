@@ -1,0 +1,56 @@
+.comment-card-container {
+    width: 30vw;
+    padding: 2vh;
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.384);
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.edit-comment-button {
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+.edit-comment-button > button {
+    border: 1px solid rgba(0, 0, 0, 0.226);
+    border-radius: 100px;
+    background-color: #fafafa;
+    margin-right: 5px;
+}
+
+.edit-comment-dropdown {
+    position: absolute;
+}
+
+.edit-comment-modal-button > button {
+    border: 1px solid blue;
+    border-radius: 10px;
+    background-color: white;
+    color: blue;
+    width: 115px;
+    margin-bottom: 5px;
+}
+
+.edit-comment-modal-button > button:hover {
+    background-color: blue;
+    color: white;
+}
+
+.delete-comment-modal-button > button {
+    border: 1px solid red;
+    border-radius: 10px;
+    background-color: white;
+    color: red;
+    width: 115px;
+}
+
+.delete-comment-modal-button > button:hover {
+    background-color: red;
+    color: white;
+}
+
+.comment-card-details {
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, Task, Comment, Project
+from app.models import db, Comment
 from app.forms import CommentForm
 
 comment_routes = Blueprint('comments', __name__)
@@ -48,7 +48,7 @@ def get_current_comments():
             return { "errors": validation_errors_to_error_messages(form.errors) }, 400
 
 
-@comment_routes.route("/", methods=["GET", "PUT", "DELETE"])
+@comment_routes.route("/<int:id>", methods=["GET", "PUT", "DELETE"])
 @login_required
 def edit_comment(id):
     """
@@ -58,7 +58,7 @@ def edit_comment(id):
     comment = Comment.query.get(id)
 
     if not comment:
-        return { "error": "We're sorry, that comment cannot be found"}, 404
+        return { "error": "We're sorry, that comment cannot be found" }, 404
 
     if request.method == "GET":
         response = comment.to_dict()
@@ -72,23 +72,21 @@ def edit_comment(id):
             if form.validate_on_submit():
                 data = form.data
                 comment.description = data["description"]
-                comment.user_id = current_user.id
-                comment.task_id = data["task_id"]
 
                 db.session.commit()
-                return comment.to_dict(), 202
+                return comment.to_dict(), 201
 
             else:
                 return { "errors": validation_errors_to_error_messages(form.errors) }, 400
 
         else:
-            return { "errors": "Unauthorized user" }, 401
+            return { "errors": "Unauthorized User" }, 401
 
     if request.method == "DELETE":
         if comment.user_id == current_user.id:
             db.session.delete(comment)
             db.session.commit()
-            return { "message" "Successfully Deleted"}
+            return { "message": "Successfully Deleted"}
 
         else:
-            return { "errors": "Unauthorized user" }, 401
+            return { "errors": "Unauthorized User" }, 401

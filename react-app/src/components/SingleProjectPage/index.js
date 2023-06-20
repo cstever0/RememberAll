@@ -9,13 +9,16 @@ import EditProjectModal from "../EditProjectModal";
 import DeleteProjectModal from "../DeleteProjectModal";
 import TaskCard from "../TaskCard";
 import SidebarNav from "../SidebarNav";
+import LoadingSpinner from "../LoadingSpinner";
 import "./SingleProjectPage.css"
 
-const SingProjectPage = () => {
+const SingleProjectPage = () => {
     const dispatch = useDispatch();
     const [isHidden, setIsHidden] = useState(true);
     const { projectId } = useParams();
     const project = useSelector((state) => state.projects.oneProject);
+    const labels = useSelector((state) => state.labels.allLabels);
+    const allLabels = Object.values(labels);
     const tasks = useSelector((state) => state.tasks.allTasks);
     const allTasks = Object.values(tasks);
     const projectTasks = allTasks.filter(task => task.projectId === project.id);
@@ -34,7 +37,7 @@ const SingProjectPage = () => {
 
     if (!sessionUser) return <Redirect to="/login" />;
 
-    if (!Object.values(project).length) return null;
+    if (!project) return <LoadingSpinner />;
 
     const handleClick = () => {
         setIsHidden(!isHidden);
@@ -78,7 +81,7 @@ const SingProjectPage = () => {
                     <div className="single-project-tasks-section">
                         {
                             sortedTasks.length > 0 &&
-                            sortedTasks.map((task) => <TaskCard key={task.id} task={task} project={project} />)
+                            sortedTasks.map((task) => <TaskCard key={task.id} task={task} project={project} label={allLabels.find((label) => label.id === task.labelId)} />)
                         }
                     </div>
                     <div className="single-project-add-task-button">
@@ -93,4 +96,4 @@ const SingProjectPage = () => {
     )
 };
 
-export default SingProjectPage;
+export default SingleProjectPage;

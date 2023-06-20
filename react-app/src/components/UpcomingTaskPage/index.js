@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllTasks } from "../../store/task";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import SidebarNav from "../SidebarNav";
 import TaskCard from "../TaskCard";
 import monthObj from "../../utilities/monthObj";
 import "./UpcomingTaskPage.css"
+import LoadingSpinner from "../LoadingSpinner";
 
 const UpcomingTaskPage = () => {
     const dispatch = useDispatch();
@@ -23,8 +25,8 @@ const UpcomingTaskPage = () => {
         dispatch(getAllTasks());
     }, [dispatch]);
 
-    // if (!allTasks.length) return null;
-    // if (!sessionUser) return <Redirect to="/login" />;
+    if (!sessionUser) return <Redirect to="/login" />;
+    if (!tasks) return <LoadingSpinner />;
 
     return (
         <div className="today-tasks-page-container">

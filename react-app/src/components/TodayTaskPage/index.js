@@ -1,16 +1,18 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllTasks } from "../../store/task";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import SidebarNav from "../SidebarNav";
 import TaskCard from "../TaskCard";
 import monthObj from "../../utilities/monthObj";
+import LoadingSpinner from "../LoadingSpinner";
 import "./TodayTaskPage.css"
 
 const TodayTaskPage = () => {
     const dispatch = useDispatch();
     const tasks = useSelector((state) => state.tasks.allTasks);
     const projects = useSelector((state) => state.projects.allProjects);
-    // const sessionUser = useSelector((state) => state.session.user);
+    const sessionUser = useSelector((state) => state.session.user);
     const todayFullDate = new Date();
     const todayTasks = Object.values(tasks).filter(task => new Date(task.dueDate).getTime() <= todayFullDate.getTime());
     const sortedTasks = todayTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
@@ -24,8 +26,8 @@ const TodayTaskPage = () => {
         dispatch(getAllTasks());
     }, [dispatch]);
 
-    // if (!allTasks.length) return null;
-    // if (!sessionUser) return <Redirect to="/login" />;
+    if (!sessionUser) return <Redirect to="/login" />;
+    if (!tasks) return <LoadingSpinner />;
 
     return (
         <div className="today-tasks-page-container">

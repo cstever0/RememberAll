@@ -84,10 +84,59 @@
     width: 30vw;
 }
 
-#task-project-title {
+.task-project-link {
     color: rgba(4, 20, 248, 0.568);
 }
 
+.task-project-link > a {
+    color: rgba(4, 20, 248, 0.568);
+}
+
+.task-label-link {
+    color: rgba(255, 145, 0, 0.568);
+}
+
+.task-label-link > a {
+    color: rgba(255, 145, 0, 0.568);
+}
+
+.single-task-page-comments-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.single-task-comment-form {
+    display: flex;
+}
+
+.comment-error-container {
+    color: red;
+}
+
 #comment-input {
-    cursor: not-allowed;
+    width: 20vw;
+    height: 10vh;
+    border-radius: 10px;
+    padding: 5px;
+    border: none;
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.473);
+    margin-bottom: 3px;
+}
+
+.create-comment-submit-button button {
+    border: 1px solid green;
+    border-radius: 10px;
+    background-color: white;
+    color: green;
+    width: 100px;
+    padding: 3px;
+}
+
+.create-comment-submit-button button:hover {
+    background-color: green;
+    color: white;
+}
+
+.single-task-comment-section {
+    margin-top: 10px;
 }

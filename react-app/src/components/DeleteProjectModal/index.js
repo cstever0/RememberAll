@@ -9,7 +9,7 @@ export default function DeleteProjectModal({id}) {
     const history = useHistory();
     const { closeModal } = useModal();
 
-    const deleteClick = async (e) => {
+    const confirmDelete = async (e) => {
         e.preventDefault();
         await dispatch(deleteOneProject(id));
         closeModal();
@@ -31,7 +31,7 @@ export default function DeleteProjectModal({id}) {
                     </button>
                 </div>
                 <div className="delete-project-button">
-                    <button onClick={deleteClick}>
+                    <button onClick={confirmDelete}>
                         Yes (Delete project)
                     </button>
                 </div>

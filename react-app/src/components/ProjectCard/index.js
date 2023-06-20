@@ -10,7 +10,7 @@ const ProjectCard = ({ project }) => {
                 <div className="project-card-container">
                     <div className="project-card-title">
                         <i class="fas fa-circle"></i>
-                        <p>{project.title}</p>
+                        <div>{project.title}</div>
                     </div>
                 </div>
             </NavLink>

@@ -1,22 +1,35 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
 import { getOneTask } from "../../store/task";
+import { createOneComment, getAllComments } from "../../store/comment";
 import OpenModalButton from "../OpenModalButton";
 import EditTaskModal from "../EditTaskModal";
 import DeleteTaskModal from "../DeleteTaskModal";
 import SidebarNav from "../SidebarNav";
+import CommentCard from "../CommentCard";
+import LoadingSpinner from "../LoadingSpinner";
 import "./SingleTaskPage.css";
 
 const SingleTaskPage = () => {
     const dispatch = useDispatch();
     const { taskId } = useParams();
+    // const ulRef = useRef();
     const sessionUser = useSelector((state) => state.session.user);
     const task = useSelector((state) => state.tasks.oneTask);
     const projects = useSelector((state) => state.projects.allProjects);
     const allProjects = Object.values(projects);
-    const taskProject = allProjects.find((project) => project.id === task.projectId)
+    const taskProject = allProjects.find((project) => project.id === task.projectId);
+    const labels = useSelector((state) => state.labels.allLabels);
+    const allLabels = Object.values(labels);
+    const taskLabel = allLabels.find((label) => label.id === task.labelId);
+    const comments = useSelector((state) => state.comments.allComments);
+    const allComments = Object.values(comments);
+    const taskComments = allComments.filter((comment) => comment.taskId === task.id)
+    const sortedComments = taskComments.sort((a, b) => b.id - a.id);
     const [isHidden, setIsHidden] = useState(true);
+    const [description, setDescription] = useState("");
+    const [errors, setErrors] = useState([]);
     const dueDate = new Date(task.dueDate).toDateString();
     const dueDateTime = new Date(task.dueDate).getTime()
     const todayFullDate = new Date();
@@ -24,24 +37,62 @@ const SingleTaskPage = () => {
     const overDue = dueDateTime < dateChecker.getTime();
     // console.log("this is task", task);
     // console.log("this is projects", taskProject)
+    // console.log("allComments", sortedComments)
 
     useEffect(() => {
         dispatch(getOneTask(taskId))
     }, [dispatch, taskId]);
 
+    useEffect(() => {
+        dispatch(getAllComments())
+    }, [dispatch, taskId]);
+
+    // useEffect(() => {
+    //     if (isHidden) return;
+
+    //     const closeMenu = (e) => {
+    //         if (!ulRef.current.contains(e.target)) {
+    //             setIsHidden(true);
+    //         }
+    //     };
+
+    //     document.addEventListener("click", closeMenu);
+
+    //     return () => document.removeEventListener("click", closeMenu);
+    // }, [isHidden]);
+
     if (!sessionUser) return <Redirect to="/login" />;
 
-
-    if (!Object.values(task).length) return null;
+    if (!task) return <LoadingSpinner />;
 
     const handleClick = () => {
         setIsHidden(!isHidden)
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const item = {
+            "description": description,
+            // "user_id": sessionUser.id,
+            "task_id": task.id
+        };
+
+        const comment = await dispatch(createOneComment(item));
+        // console.log("comment output", comment)
+
+        if (comment) {
+            setErrors(comment);
+        } else {
+            setDescription("");
+            setErrors([]);
+        }
+    };
+
     // const { comments } = task.comments;
     // console.log("this is comments", comments);
-    const editTaskDropdown = isHidden ? "hidden" : "edit-task-dropdown"
-    const overDueClass = overDue ? "red" : "blue"
+    const editTaskDropdown = isHidden ? "hidden" : "edit-task-dropdown";
+    const overDueClass = overDue ? "red" : "blue";
 
     return (
         <div className="single-task-page-container">
@@ -80,33 +131,77 @@ const SingleTaskPage = () => {
                 </div>
                 <div className="single-task-details-container">
                     <div className="single-task-description">
-                        <p>{task.description}</p>
-                    </div>
-                    <div className="single-task-project-details">
-                        <h3>Project</h3>
-                        <p id="task-project-title">
+                        <p>
                             {
-                                taskProject?.title ?
-                                    taskProject.title :
-                                    "No assigned project"
+                                task.description ?
+                                    task.description
+                                    :
+                                    "Your task has no description..."
                             }
                         </p>
                     </div>
+                    <div>
+                        <div className="single-task-project-details">
+                            <h3>Project</h3>
+                            <p className="task-project-link">
+                                {
+                                    taskProject?.title ?
+                                        <a href={`/projects/${taskProject.id}`}>{taskProject.title}</a>
+                                        :
+                                        "No assigned project"
+                                }
+                            </p>
+                        </div>
+                        <div className="single-task-project-details">
+                            <h3>Label</h3>
+                            <p className="task-label-link">
+                                {
+                                    taskLabel?.title ?
+                                        <a href={`/labels/${taskLabel.id}`}>{taskLabel.title}</a>
+                                        :
+                                        "No assigned label"
+                                }
+                            </p>
+                        </div>
+                    </div>
                 </div>
                 <div className="single-task-page-comments-container">
-                    <div className="single-task-comment-input">
-                        <input
-                            type="text"
-                            id="comment-input"
-                            placeholder="Comment"
-                            disabled
-                        />
+                    <div className="single-task-comment-form">
+                        <form
+                            onSubmit={handleSubmit}
+                            encType="multipart/form-data"
+                            className="create-comment-form"
+                        >
+                            <div className="comment-error-container">
+                                {errors?.map((error, idx) => <p key={idx}>{error}</p>)}
+                            </div>
+                            <div className="create-comment-details">
+                                <textarea
+                                    id="comment-input"
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    placeholder="Comment..."
+                                />
+                            </div>
+                            <div className="create-comment-submit-button">
+                                <button
+                                    type="submit"
+                                    className="button-type"
+                                >
+                                    Post comment
+                                </button>
+                            </div>
+                        </form>
                     </div>
                     <div className="single-task-comment-section">
-                        {/* {comments.map((comment) => {
-                        return <div>{comment.description}</div>
-                    })} */}
-                        <p>Comments Section Coming Soon!</p>
+                        {
+                            sortedComments.length > 0 ?
+                                sortedComments.map((comment) => {
+                                    return <CommentCard key={comment.id} comment={comment} />
+                                })
+                                :
+                                <p>Add a comment about this task!</p>
+                        }
                     </div>
                 </div>
 

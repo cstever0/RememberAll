@@ -5,24 +5,23 @@ from datetime import datetime
 
 def seed_tasks():
     task1 = Task(
-        title='Database Migrated', description='Migrate database', user_id=1, project_id=1, due_date=datetime.now())
+        title='Database Migrated', description='Migrate database', user_id=1, project_id=1, label_id=1, due_date=datetime.now())
     task2 = Task(
-        title='Seed Data Created', description='Create seed data', user_id=1, project_id=1, due_date=datetime.now())
+        title='Seed Data Created', description='Create seed data', user_id=1, project_id=1, label_id=2, due_date=datetime.now())
     task3 = Task(
-        title='Deployed to Render', description='Deploy to render', user_id=1, project_id=3, due_date=datetime.now())
+        title='Deployed to Render', description='Deploy to render', user_id=1, project_id=3, label_id=3, due_date=datetime.now())
     task4 = Task(
-        title='Database Migrated', description='Migrate database', user_id=2, project_id=4, due_date=datetime.now())
+        title='Database Migrated', description='Migrate database', user_id=2, project_id=4, label_id=1, due_date=datetime.now())
     task5 = Task(
-        title='Seed Data Created', description='Create seed data', user_id=2, project_id=5, due_date=datetime.now())
+        title='Seed Data Created', description='Create seed data', user_id=2, project_id=5, label_id=2, due_date=datetime.now())
     task6 = Task(
-        title='Deployed to Render', description='Deploy to render', user_id=2, project_id=6, due_date=datetime.now())
+        title='Deployed to Render', description='Deploy to render', user_id=2, project_id=6, label_id=3, due_date=datetime.now())
     task7 = Task(
-        title='Database Migrated', description='Migrate database', user_id=3, project_id=7, due_date=datetime.now())
+        title='Database Migrated', description='Migrate database', user_id=3, project_id=7, label_id=1, due_date=datetime.now())
     task8 = Task(
-        title='Seed Data Created', description='Create seed data', user_id=3, project_id=8, due_date=datetime.now())
+        title='Seed Data Created', description='Create seed data', user_id=3, project_id=8, label_id=2, due_date=datetime.now())
     task9 = Task(
-        title='Deployed to Render', description='Deploy to render', user_id=3, project_id=9, due_date=datetime.now())
-
+        title='Deployed to Render', description='Deploy to render', user_id=3, project_id=9, label_id=3, due_date=datetime.now())
 
     db.session.add(task1)
     db.session.add(task2)
@@ -44,7 +43,8 @@ def seed_tasks():
 # it will reset the primary keys for you as well.
 def undo_tasks():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.tasks RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.tasks RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM tasks"))
 

@@ -74,7 +74,7 @@ function CreateProjectModal() {
                     <div className="create-project-modal-submit-button">
                         <button
                             className="button-type"
-                            onClick={handleSubmit}
+                            type="submit"
                         >
                             Add
                         </button>

@@ -19,12 +19,17 @@ const SidebarNav = () => {
             <div className="sidebar-nav-task-container">
                 <NavLink to="/home">
                     <div className="sidebar-nav-task">
-                        <i class="fas fa-calendar"></i>Today
+                        <i id="sidebar-nav-today" class="fas fa-calendar"></i>Today
                     </div>
                 </NavLink>
                 <NavLink to="/upcoming">
                     <div className="sidebar-nav-task">
-                        <i class="fas fa-calendar"></i>Upcoming
+                        <i id="sidebar-nav-upcoming" class="fas fa-calendar"></i>Upcoming
+                    </div>
+                </NavLink>
+                <NavLink to="/labels">
+                    <div className="sidebar-nav-task">
+                        <i id="sidebar-nav-label" class="fas fa-tags"></i>Labels
                     </div>
                 </NavLink>
             </div>
