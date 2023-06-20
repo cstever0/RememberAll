@@ -10,14 +10,17 @@ export default function CommentCard({ comment }) {
     const postDate = new Date(comment.createdAt).toDateString().slice(0, -5);
 
 
-    const editCommentButton = isHiddenButton ? "hidden" : "edit-comment-button"
+    const editCommentButton = isHiddenButton ? "hidden" : "edit-comment-button";
     const editCommentDropdown = isHiddenDropdown ? "hidden" : "edit-comment-dropdown";
 
     return (
         <div
             className="comment-card-container"
             onMouseEnter={() => setIsHiddenButton(false)}
-            onMouseLeave={() => setIsHiddenButton(true)}
+            onMouseLeave={() => {
+                setIsHiddenButton(true);
+                setIsHiddenDropdown(true);
+            }}
         >
             <div className={editCommentButton}>
                 <button onClick={() => setIsHiddenDropdown(!isHiddenDropdown)}>
@@ -32,7 +35,7 @@ export default function CommentCard({ comment }) {
                                 onButtonClick={() => setIsHiddenDropdown(true)}
                             />
                         </div>
-                        <div>
+                        <div className="delete-comment-modal-button">
                             <OpenModalButton
                                 buttonText="Delete comment"
                                 modalComponent={<DeleteCommentModal id={comment.id} />}
