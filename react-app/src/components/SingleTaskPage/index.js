@@ -143,7 +143,7 @@ const SingleTaskPage = () => {
                     <div>
                         <div className="single-task-project-details">
                             <h3>Project</h3>
-                            <p className="task-link-title">
+                            <p className="task-project-link">
                                 {
                                     taskProject?.title ?
                                         <a href={`/projects/${taskProject.id}`}>{taskProject.title}</a>
@@ -154,7 +154,7 @@ const SingleTaskPage = () => {
                         </div>
                         <div className="single-task-project-details">
                             <h3>Label</h3>
-                            <p className="task-link-title">
+                            <p className="task-label-link">
                                 {
                                     taskLabel?.title ?
                                         <a href={`/labels/${taskLabel.id}`}>{taskLabel.title}</a>
@@ -180,7 +180,7 @@ const SingleTaskPage = () => {
                                     id="comment-input"
                                     value={description}
                                     onChange={(e) => setDescription(e.target.value)}
-                                    placeholder="Comment"
+                                    placeholder="Comment..."
                                 />
                             </div>
                             <div className="create-comment-submit-button">

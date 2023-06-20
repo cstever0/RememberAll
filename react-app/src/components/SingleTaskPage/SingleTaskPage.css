@@ -84,18 +84,53 @@
     width: 30vw;
 }
 
-.task-link-title {
+.task-project-link {
     color: rgba(4, 20, 248, 0.568);
 }
 
-.task-link-title > a {
+.task-project-link > a {
     color: rgba(4, 20, 248, 0.568);
+}
+
+.task-label-link {
+    color: rgba(255, 145, 0, 0.568);
+}
+
+.task-label-link > a {
+    color: rgba(255, 145, 0, 0.568);
+}
+
+.single-task-page-comments-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.single-task-comment-form {
+    display: flex;
 }
 
 .comment-error-container {
     color: red;
 }
 
-/* #comment-input {
-    cursor: not-allowed;
-} */
+#comment-input {
+    width: 20vw;
+    height: 10vh;
+    border-radius: 10px;
+    padding: 5px;
+    border: none;
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.473);
+}
+
+.create-comment-submit-button button {
+    border: 1px solid green;
+    border-radius: 10px;
+    background-color: white;
+    color: green;
+    width: 100px;
+}
+
+.create-comment-submit-button button:hover {
+    background-color: green;
+    color: white;
+}
