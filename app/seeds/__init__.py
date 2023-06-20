@@ -27,9 +27,9 @@ def seed():
         undo_users()
     seed_users()
     seed_projects()
+    seed_labels()
     seed_tasks()
     seed_comments()
-    seed_labels()
     # Add other seed functions here
 
 
