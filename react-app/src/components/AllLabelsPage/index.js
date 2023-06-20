@@ -24,18 +24,18 @@ const AllLabelsPage = () => {
     if (!labels) return <LoadingSpinner />
 
     return (
-        <div className="all-projects-page-container">
+        <div className="all-labels-page-container">
             <SidebarNav />
-            <div className="all-projects-container">
-                <div className="all-projects-list-container">
-                    <div className="all-projects-header-container">
+            <div className="all-labels-container">
+                <div className="all-labels-list-container">
+                    <div className="all-labels-header-container">
                         <h2>Labels</h2>
                         <OpenModalButton
                             modalComponent={<CreateLabelModal />}
                             buttonText={<i class="fas fa-plus">Add label</i>}
                         />
                     </div>
-                    <div className="all-projects-list">
+                    <div className="all-labels-list">
                         {
                             allLabels.length > 0 &&
                             allLabels.map((label) => <LabelCard key={label.id} label={label} />)
