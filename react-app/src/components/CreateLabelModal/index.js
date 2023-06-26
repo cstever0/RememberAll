@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory, Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { createOneLabel } from "../../store/label";

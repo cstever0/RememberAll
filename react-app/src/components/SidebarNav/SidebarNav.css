@@ -68,3 +68,37 @@
     background-color: #eeeeee;
     border-radius: 10px;
 }
+
+.sidebar-nav-about-links-container {
+    padding-top: 5vh;
+}
+
+.sidebar-nav-about-links-container a {
+    text-decoration: none;
+    color: black;
+}
+
+.side-nav-about-title {
+    font-size: larger;
+    padding: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.side-nav-about-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.side-nav-about-links a {
+    padding: 5px;
+}
+
+.side-nav-about-links i {
+    padding-right: 5px;
+}
+
+.side-nav-about-links a:hover {
+    background-color: #eeeeee;
+    border-radius: 10px;
+}
