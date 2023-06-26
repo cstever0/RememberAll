@@ -4,7 +4,7 @@ import { getAllTasks } from "../../store/task";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import SidebarNav from "../SidebarNav";
 import TaskCard from "../TaskCard";
-import monthObj from "../../utilities/monthObj";
+// import monthObj from "../../utilities/monthObj";
 import "./UpcomingTaskPage.css"
 import LoadingSpinner from "../LoadingSpinner";
 
@@ -13,11 +13,11 @@ const UpcomingTaskPage = () => {
     const tasks = useSelector((state) => state.tasks.allTasks);
     const projects = useSelector((state) => state.projects.allProjects);
     const sessionUser = useSelector((state) => state.session.user);
-    const todayFullDate = new Date();
+    // const todayFullDate = new Date();
     const allTasks = Object.values(tasks);
     const sortedTasks = allTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
-    const month = todayFullDate.getMonth();
-    const day = todayFullDate.getDate();
+    // const month = todayFullDate.getMonth();
+    // const day = todayFullDate.getDate();
     // console.log("this is new Date", todayFullDate)
     // console.log("projects output", projects[17])
 

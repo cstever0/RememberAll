@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+// import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { createOneTask } from "../../store/task";
@@ -7,7 +7,7 @@ import "./CreateTaskModal.css";
 
 function CreateTaskModal({ projectId, labelId }) {
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
     const todayFullDate = new Date();
     const dateChecker = new Date(todayFullDate.setDate(todayFullDate.getDate() - 1));
     const [title, setTitle] = useState("");
@@ -44,7 +44,7 @@ function CreateTaskModal({ projectId, labelId }) {
             if (Object.values(errorObj).length > 0) {
                 setErrors(errorObj);
             } else {
-                const task = await dispatch(createOneTask(item));
+                await dispatch(createOneTask(item));
                 closeModal();
                 // history.push(`/tasks/${task.id}`);
             }

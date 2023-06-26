@@ -1,11 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import OpenModalButton from '../OpenModalButton';
-import CreateTaskModal from '../CreateTaskModal';
+// import CreateTaskModal from '../CreateTaskModal';
 import CreateTaskModalSelect from '../CreateTaskModalSelect';
 
 function Navigation({ isLoaded }){

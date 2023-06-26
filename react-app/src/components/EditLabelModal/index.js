@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory, Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { updateOneLabel } from "../../store/label";
@@ -8,7 +8,7 @@ import "./EditLabelModal.css";
 
 function EditLabelModal({ label }) {
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
     const [title, setTitle] = useState(label.title);
     const [errors, setErrors] = useState({});
     const sessionUser = useSelector((state) => state.session.user);

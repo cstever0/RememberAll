@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { updateOneComment } from "../../store/comment";
 import "./EditCommentModal.css";
 
 function EditCommentModal({ comment }) {
     const dispatch = useDispatch();
-    const sessionUser = useSelector((state) => state.session.user);
+    // const sessionUser = useSelector((state) => state.session.user);
     const [description, setDescription] = useState(comment.description);
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();

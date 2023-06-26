@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory, Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { updateOneProject } from "../../store/project";
@@ -8,7 +8,7 @@ import "./EditProjectModal.css";
 
 function EditProjectModal({project}) {
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
     const [title, setTitle] = useState(project.title);
     const [errors, setErrors] = useState({});
     const sessionUser = useSelector((state) => state.session.user);

@@ -46,6 +46,18 @@ const SidebarNav = () => {
                     }
                 </div>
             </div>
+            <div className="sidebar-nav-about-links-container">
+                    <div className="side-nav-about-title">
+                        Creator Links
+                    </div>
+                    <div className="side-nav-about-links">
+                        <a href="https://github.com/cstever0/RememberAll" target="_blank" rel="noreferrer"><i class="fab fa-github"></i>Project Repository</a>
+						<a href="https://github.com/cstever0" target="_blank" rel="noreferrer"><i class="fab fa-github"></i>Github Profile</a>
+                        <a href="https://cstever0.github.io/" target="_blank" rel="noreferrer"><i class="fa fa-user"></i>Portfolio</a>
+                        <a href="https://www.linkedin.com/in/cory-stever-aa2730126/" target="_blank" rel="noreferrer"><i class="fab fa-linkedin"></i>LinkedIn</a>
+						<a href="https://wellfound.com/u/cory-stever" target="_blank" rel="noreferrer"><i class="fab fa-angellist"></i>WellFound</a>
+                    </div>
+            </div>
         </div>
     );
 };
